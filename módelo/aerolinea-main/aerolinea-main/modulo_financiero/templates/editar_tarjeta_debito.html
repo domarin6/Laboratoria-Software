@@ -1,0 +1,22 @@
+{% extends 'baseInicioUsuarios.html'%}
+{%load widget_tweaks%}
+{{form.media}}
+
+{% block vuelo%}
+    <form action="" method="post">
+        {% csrf_token %}
+        Numero          : {%render_field form.numero class="form-control" placeholder="Numero"%} <br>
+        {{ form.numero.errors }} <br>
+        Nombre          : {{ form.nombre }} <br>
+        {{ form.nombre.errors }} <br>
+        Apellido        : {{ form.apellido }} <br>
+        {{ form.apellido.errors }} <br>
+        Direccion       : {{ form.direccion }} <br>
+        {{ form.direccion.errors }} <br>
+        Saldo Inicial   : {{ form.saldo }} <br>
+        {{ form.saldo.errors }} <br>
+        
+        <input type="submit" value="Actualizar" class="btn btn-success col-md-12">
+    </form>
+
+{%endblock%}

@@ -1,0 +1,38 @@
+{% extends 'baseInicio.html'%}
+
+{% block contenido%}
+{% load tz %}
+
+<div class="card bg-dark text-white">
+    <img src={{imagen}} class="card-img" alt="...">
+    <div class="card-img-overlay">
+      <h3 class="card-title">Vuelo a {{ vuelo.destino }}</h3>
+      <hr>
+      <p class="card-text"><b>Codigo de vuelo: </b>{{ vuelo.id }}</p>
+      <p class="card-text"><b>Tipo de vuelo: </b>{{ vuelo.tipo_vuelo }}</p>
+      <p class="card-text"><b>Este vuelo sale desde la ciudad de {{ vuelo.origen}}, <br> con destino a la ciudad de {{ vuelo.destino }}</b></p>
+      <p class="card-text"><b>Fecha de vuelo </b>{{ vuelo.fecha_vuelo }} </p>
+      <p class="card-text"><b>El tiempo estimado de este vuelo es de </b>{{ vuelo.tiempo_Vuelo }} hrs</p>
+      {% if vuelo.tipo_vuelo == "internacional" %}
+      <p class="card-text"><b>La fecha de llegada es :{{ vuelo.fecha_llegada }} (Zona horaria local)</b></p>
+      <p class="card-text"><b>La fecha de llegada es :{{ vuelo.fecha_llegada|timezone:zona }} (Zona horaria {{ zona }})</b></p>
+    {% else %}
+    <p class="card-text"><b>La fecha de llegada es :{{ vuelo.fecha_llegada }} (Zona horaria local)</b></p>
+    {% endif %}
+       <p class="card-text"><b>Disponibilidad para: </b>{{ vuelo.capacidad }} pasajeros </p>
+       <h2 class="card-title"><b>Compralo ahora por ${{ vuelo.costo }} pesos COP </b></h2>
+       <button type="button" class="btn btn-light"><a href="{% url 'compras_reservas:reserva' vuelo.id%}">Reservar</a></button>
+        <button type="button" class="btn btn-primary">Comprar</button>
+    </div>
+  </div>
+
+
+
+
+
+    
+    
+    
+
+{%endblock%}
+    

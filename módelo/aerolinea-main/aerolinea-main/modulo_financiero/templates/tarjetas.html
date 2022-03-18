@@ -1,0 +1,126 @@
+{% extends 'baseInicioUsuarios.html'%}
+{%load widget_tweaks%}
+{% block userName%}
+{{ user.get_username }}
+{%endblock%}
+{% block vuelo%}
+    {% if "delete" in request.GET%}
+        <p style="color: red;">Tarjeta Eliminada</p>
+    {% endif %}
+    {% if "non_delete" in request.GET%}
+        <p style="color: red;">No fue posible eliminar la tarjeta</p>
+    {% endif %}
+    {% if "True" in request.GET%}
+        <p style="color: red;">Datos agregados con exito</p>
+    {% endif %}
+    {% if "saldo" in request.GET%}
+        <p style="color: red;">Saldo actualizado</p>
+    {% endif %}
+    {% if "non_saldo" in request.GET%}
+        <p style="color: red;">Error al intentar actualizar el saldo</p>
+    {% endif %}
+<section class="container my-5">
+    <div class="">
+        <a class="btn btn-success container col-md-3" href="../add_debit">Incribir Tarjeta Debito</a>
+        <a class="btn btn-secondary container col-md-3" href="../add_credit">Inscribir Tarjeta Credito</a>
+    </div>
+  </section>
+    <h4>Tarjetas debito</h4>
+    {%if tam_debit != 0%}
+    {% for debit in debit_cards %}
+    Tipo: Debito <br>
+    Numero:     {{ debit.numero }} <br>
+
+    
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Saldo</a>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Agregar Saldo</button>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3">Eliminar</button>
+      </p>
+      <div class="row">
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample1">
+            <div class="card card-body">
+              Su saldo es: {{ debit.saldo }}
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="collapse multi-collapse" id="multiCollapseExample2">
+            <div class="card card-body">
+              <form action="{% url 'modulo_financiero:add_saldo' %}" method="post">
+                {% csrf_token %}
+                <label for="saldo">Digite el saldo a agregar: </label>
+                <input type="numer" id="saldo" name="saldo" pattern="^[0-9]+">
+                <input type="hidden" class="btn btn-danger container" name="pk_hidden" value=" {{debit.id}} ">
+                <input type="submit" class="btn btn-success container" value="Agregar">
+              </form>
+            </div>
+          </div>
+          <div class="collapse multi-collapse" id="multiCollapseExample3">
+            <div class="card card-body">
+              ¿Esta seguro de realizar esta accion? Esto eliminara completamente la tarjeta de nuestro sistema.
+              <form action="{% url 'modulo_financiero:delete_debit' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" class="btn btn-danger container" name="pk_hidden" value=" {{debit.id}} ">
+                <input type="submit" class="btn btn-danger container" value="Eliminar">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <th class="text-center"><a href="{% url 'modulo_financiero:edit_debit' debit.id %}" class="btn btn-success container">editar</a></th><br>
+    {% endfor %}
+    {%else%}
+    <p>No hay tarjetas para mostrar</p>
+    {%endif%}
+
+    
+    <h4>Tarjetas credito</h4>
+    {%if tam_credit != 0%}
+    {% for credit in credit_cards %}
+    Tipo: Credito <br>
+    Numero: {{credit.numero}} <br>
+    <p>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">Cupo</a>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample5" aria-expanded="false" aria-controls="multiCollapseExample5">Añadir Cupo</button>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample6" aria-expanded="false" aria-controls="multiCollapseExample6">Eliminar</button>
+    </p>
+    <div class="row">
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample4">
+          <div class="card card-body">
+            Su cupo es: {{ credit.cupo }}
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample5">
+          <div class="card card-body">
+            <form action="{% url 'modulo_financiero:add_cupo' %}" method="post">
+              {% csrf_token %}
+              <label for="saldo">Digite el cupo a agregar: </label>
+              <input type="numer" id="cupo" name="cupo" pattern="^[0-9]+">
+              <input type="hidden" class="btn btn-danger container" name="pk_hidden" value=" {{credit.id}} ">
+              <input type="submit" class="btn btn-success container" value="Agregar">
+            </form>
+          </div>
+        </div>
+        <div class="collapse multi-collapse" id="multiCollapseExample6">
+          <div class="card card-body">
+            ¿Esta seguro de realizar esta accion? Esto eliminara completamente la tarjeta de nuestro sistema.
+            <form action="{% url 'modulo_financiero:delete_credit' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" class="btn btn-danger container" name="pk_hidden" value=" {{credit.id}} ">
+              <input type="submit" class="btn btn-danger container" value="Eliminar">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <th class="text-center"><a href="{% url 'modulo_financiero:edit_credit' credit.id %}" class="btn btn-success container">editar</a></th><br>
+    {% endfor %}
+    {%else%}
+    <p>No hay tarjetas para mostrar</p>
+    {%endif%}
+{%endblock%}

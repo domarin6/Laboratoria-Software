@@ -1,0 +1,23 @@
+{% extends 'baseInicioUsuarios.html'%}
+
+{% block vuelo%}
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        Numero          : {{ form.numero }} <br>
+        {{ form.numero.errors }} <br>
+        Nombre          : {{ form.nombre }} <br>
+        {{ form.nombre.errors }} <br>
+        Apellido        : {{ form.apellido }} <br>
+        {{ form.apellido.errors }} <br>
+        Direccion       : {{ form.direccion }} <br>
+        {{ form.direccion.errors }} <br>
+        Cupo Inicial   : {{ form.cupo }} <br>
+        {{ form.cupo.errors }} <br>
+        CVV   : {{ form.cvv }} <br>
+        {{ form.cvv.errors }} <br>
+        
+        <input type="submit" value="Actualizar" class="btn btn-success col-md-12">
+    </form>
+    {%endblock%}

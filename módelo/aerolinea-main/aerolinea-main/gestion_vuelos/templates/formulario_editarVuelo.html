@@ -1,0 +1,65 @@
+{% extends 'baseInicioUsuarioVuelo.html'%}
+{%load widget_tweaks%}
+{{form.media}}
+
+{% block contenido%}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-7">
+            <h1 class="display-4">Editar vuelo</h1>
+            <hr>
+            <form action="" method="post">
+               {% csrf_token %}
+               <div class="row form-group col-form-label">
+                    <label class="col-md-4">Codigo vuelo: </label>
+                    <div class="col-md-8">
+                        <th>{{ vuelo.id }}</th>
+                    </div>
+                </div>
+                <div class="row form-group col-form-label">
+                    <label  class="col-md-4">Origen: </label>
+                    <div class="col-md-8">
+                        <th>{{ vuelo.origen }}</th>
+                    </div>
+                </div>
+                <div class="row form-group col-form-label">
+                    <label class="col-md-4">Destino: </label>
+                    <div class="col-md-8">
+                        <th>{{ vuelo.destino }}</th>
+                    </div>
+                </div>
+                <div class="row form-group col-form-label">
+                    <label for="Fecha_vuelo" class="col-md-4">Fecha vuelo actual: </label>
+                    <div class="col-md-8">
+                        <th>{{ vuelo.fecha_vuelo }}</th>
+                    </div>
+                </div>
+               <div class="row form-group col-form-label">
+                    <label for="Fecha_vuelo" class="col-md-4">Fecha Vuelo: </label>
+                    <div class="col-md-8">
+                        {%render_field form.fecha_vuelo class="form-control" placeholder="Nombre de usuario"%}
+                        {{ form.fecha_vuelo.errors }}
+                    </div>
+               </div>
+               <div class="row form-group col-form-label">
+                    <label for="Fecha_vuelo" class="col-md-4">Tiempo Vuelo: </label>
+                    <div class="col-md-8">
+                        {%render_field form.tiempo_Vuelo class="form-control" placeholder="Nombre de usuario"%}
+                        {{ form.tiempo_Vuelo.errors }}
+                    </div>
+                </div>
+               <div class="row form-group col-form-label">
+                    <label for="Fecha_vuelo" class="col-md-4">Costo Vuelo: </label>
+                    <div class="col-md-8">
+                        {%render_field form.costo class="form-control" placeholder="Nombre de usuario"%}
+                        {{ form.costo.errors }}
+                    </div>
+               </div>
+               <input type="submit" value="Actualizar" class="btn btn-success col-md-12">
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+

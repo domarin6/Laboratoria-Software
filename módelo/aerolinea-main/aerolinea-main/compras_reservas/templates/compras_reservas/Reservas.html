@@ -1,0 +1,30 @@
+{% extends 'baseInicioUsuarios.html'%}
+{% block userName%}
+{{ user.get_username }}
+{%endblock%}
+{%block vuelo%}
+<a href="/perfil/administrarPerfil/">Inicio</a>
+<section class="container my-5"> 
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {%if reservas %}
+        {% for reserva in reservas %}
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Reserva tipo: {{reserva.vuelo.tipo_vuelo}}</h5>
+              <p class="card-text">Origen: {{reserva.vuelo.origen}}</p>
+              <p class="card-text">Destino: {{reserva.vuelo.destino}}</p>
+              <p class="card-text">Fecha vuelo: {{reserva.vuelo.fecha_vuelo}}</p>
+              <p class="card-text">Costo vuelo: {{reserva.vuelo.costo}}</p>
+              <p class="card-text">Viajero: {{reserva.viajero.nombre_contacto}}</p>
+              <a href="{% url 'compras_reservas:modificar_reserva' reserva.viajero.id%}">Modificar</a>
+                <a href="{% url 'compras_reservas:eliminar_reserva' reserva.id%}">Eliminar</a>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+        {%endif%}
+    </div>
+</section>
+
+{%endblock%}

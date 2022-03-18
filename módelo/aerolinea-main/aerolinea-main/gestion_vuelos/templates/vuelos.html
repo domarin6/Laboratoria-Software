@@ -1,0 +1,45 @@
+{% extends 'baseInicioUsuarioVuelo.html'%}
+
+{% block userName%}Administrador{%endblock%}
+
+{% block contenido%}
+
+    {% if "True" in request.GET%}
+    <p style="color: red;">realizado con exito</p>
+    {% endif %}
+   
+    <div class="container pt-5">
+        <h1 class="display-4 ">Vuelos</h1>
+        <hr>
+        <div class="">
+            <a class="btn btn-success container col-md-3" href="../crearVueloInt">CREAR VUELO INTERNACIONAL</a>
+            <a class="btn btn-secondary container col-md-3" href="../crearVueloNac">CREAR VUELO NACIONAL</a>
+        </div>
+        <table class="table table-striped pt-2 mt-2">
+            <tr>
+                <th class="text-center">ID Vuelo</th>
+                <th class="text-center">Origen</th>
+                <th class="text-center">Destino</th>
+                <th class="text-center">Fecha de Vuelo</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for item in data %}
+            <tr>
+                <th class="text-center">{{ item.id }}</th>
+                <th class="text-center">{{ item.origen }}</th>
+                <th class="text-center">{{ item.destino }}</th>
+                <th class="text-center">{{ item.fecha_vuelo|date:"d M Y" }}</th>
+                <th class="text-center"><a href="{% url 'gestion_vuelos:editarVuelo' item.id %}" class="btn btn-success container">editar</a></th>
+                <th>
+                    <form action="{% url 'gestion_vuelos:cancelarVuelo' %}" method="post">{% csrf_token %}
+                        <input type="hidden" class="btn btn-danger container" name="pk_hidden" value=" {{item.id}} ">
+                        <input type="submit" class="btn btn-danger container" value="Cancelar">
+                    </form>
+                </th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{%endblock%}
+    

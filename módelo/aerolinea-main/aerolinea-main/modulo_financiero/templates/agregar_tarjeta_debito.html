@@ -1,0 +1,42 @@
+{% extends 'baseInicioUsuarios.html'%}
+{%load widget_tweaks%}
+{% block vuelo%}
+<section class="container my-5">
+    <div class="container">
+      <h1 class="display-4 ">Tarjeta debito</h1>
+      <hr>
+      <form class="row g-3" action=" "  method="POST">
+        {% csrf_token %}
+        <div class="col-md-10">
+          <label for="mail" class="form-label">Numero tarjeta</label>
+          {%render_field form.numero class="form-control" placeholder="Numero tarjeta"%}
+          {{ form.numero.errors }}
+        </div>
+        <div class="col-md-5">
+            <label for="mail" class="form-label">Nombre</label>
+            {%render_field form.nombre class="form-control" placeholder="Nombre"%}
+            {{ form.nombre.errors }}
+        </div>
+        <div class="col-md-5">
+            <label for="mail" class="form-label">Apellido</label>
+            {%render_field form.apellido class="form-control" placeholder="Apellido "%}
+            {{ form.apellido.errors }}
+        </div>
+        <div class="col-md-3">
+            <label for="mail" class="form-label">Saldo inicial</label>
+            {%render_field form.saldo class="form-control" placeholder="Saldo inicial"%}
+            {{ form.saldo.errors }}
+        </div>
+        <div class="col-md-7">
+            <label for="mail" class="form-label">Direccion</label>
+            {%render_field form.direccion class="form-control" placeholder="Direccion"%}
+            {{ form.direccion.errors }}
+        </div>
+        <div class="col-md-12">
+          <button type="submit" value="Agregar"class="btn btn-primary">Agregar</button>
+        </div>
+      </form>
+    </div> 
+  </section>
+
+{%endblock%}

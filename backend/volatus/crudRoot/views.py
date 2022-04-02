@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import AdministradoresSerializer
 
-from .models import Administradores
+from .models import Administradores, InfoRoot
 
+#/*@api_view(['GET'])
+#def RootDetail(request):
+#    root = InfoRoot.objects.all()
+#    serializer =
+#
 # Create your views here.
 @api_view(['GET'])
 def crudRootView(request):
@@ -20,17 +25,61 @@ def crudRootView(request):
 
     return Response(api_urls)
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def administradoresList(request):
-    administradores = Administradores.objects.all()
-    serializer = AdministradoresSerializer(administradores, many=True)
-    return Response(serializer.data)
 
-@api_view(['GET'])
-def administradorDetail(request, pk):
-    administrador = Administradores.objects.get(id=pk)
-    serializer = AdministradoresSerializer(administrador, many=False)
-    return Response(serializer.data)
+    # list
+    if request.method == 'GET':
+
+        # queryset
+        administradores = Administradores.objects.all()
+        serializer = AdministradoresSerializer(administradores, many=True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+    # create
+    elif request.method == 'POST':
+        serializer = AdministradoresSerializer(data = request.data)
+        if serializer.is_valid():
+
+            # validation
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def administradorDetail(request, pk=None):
+    #queryset
+    administrador = Administradores.objects.filter(id=pk).first()
+
+    #validation
+    if administrador:
+
+        # retrieve
+        if request.method == 'GET':
+            serializer = AdministradoresSerializer(administrador, many=False)
+            return Response(serializer.data,status = status.HTTP_200_OK)
+
+        # update
+        elif request.method == 'PUT':
+            serializer = AdministradoresSerializer(administrador, many=False)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status = status.HTTP_200_OK)
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+        # delete
+        elif request.method == 'DELETE':
+            administrador.delete()
+            return Response({'message':'Item succsesfully delete!'}, status = status.HTTP_200_OK)
+
+    return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
+
+
 
 @api_view(['POST'])
 def administradorCreate(request):

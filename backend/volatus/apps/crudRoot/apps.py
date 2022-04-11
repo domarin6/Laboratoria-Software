@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RootConfig(AppConfig):
+class CrudRootConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'crudRoot'
+    name = 'apps.crudRoot'

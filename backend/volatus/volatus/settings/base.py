@@ -34,6 +34,7 @@ LOCAL_APPS = [
 ]
 
 THIRD_APPS = [
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'simple_history',
@@ -42,6 +43,7 @@ THIRD_APPS = [
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -109,7 +111,13 @@ AUTH_USER_MODEL = 'crudRoot.Usuario'
 JET_DEFAULT_THEME = 'light-violet'
 JET_SIDE_MENU_COMPACT = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
 
+CORS_ORIGIN_WHITELIST =[
+    "http://localhost:3000"
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

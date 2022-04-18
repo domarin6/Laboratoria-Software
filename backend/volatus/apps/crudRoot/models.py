@@ -9,8 +9,9 @@ class InfoRoot(models.Model):
     contraseña = models.CharField(max_length=20)
 
 class UsuarioManager(BaseUserManager):
-    def _create_user(self, nombreDeUsuario, nombre, password, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, nombreDeUsuario, DNI, nombre, password, is_staff, is_superuser, **extra_fields):
         user = self.model(
+            DNI = DNI,
             nombreDeUsuario = nombreDeUsuario,
             nombre = nombre,
             is_staff = is_staff,
@@ -21,11 +22,11 @@ class UsuarioManager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_user(self, nombreDeUsuario, nombre, password = None, **extra_fields):
-        return self._create_user(nombreDeUsuario, nombre, password, is_staff = False, is_superuser = False, **extra_fields)
+    def create_user(self, nombreDeUsuario, DNI, nombre, password = None, **extra_fields):
+        return self._create_user(nombreDeUsuario, DNI, nombre, password, is_staff = False, is_superuser = False, **extra_fields)
 
-    def create_superuser(self, nombreDeUsuario, nombre, password = None, **extra_fields):
-        return self._create_user(nombreDeUsuario, nombre, password, is_staff = True, is_superuser = True, **extra_fields)
+    def create_superuser(self, nombreDeUsuario, DNI, nombre, password = None, **extra_fields):
+        return self._create_user(nombreDeUsuario, DNI, nombre, password, is_staff = True, is_superuser = True, **extra_fields)
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
     DNI = models.CharField('Identificación', unique = True, max_length=11)

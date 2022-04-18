@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from apps.crudRoot.models import Usuario, InfoRoot
 
+class UserTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usuario
+        fields = ('DNI', 'nombre')
+        
 class AdministradoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
@@ -25,7 +30,7 @@ class AdministradoresListSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         return {
             'DNI': instance['DNI'],
-            'nombre': instanca['nombre']
+            'nombre': instance['nombre']
         }
 
 class InfoRootSerializer(serializers.ModelSerializer):

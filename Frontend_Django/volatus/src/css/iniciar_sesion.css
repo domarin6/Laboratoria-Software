@@ -1,0 +1,153 @@
+:root{
+    --paleta_A: #6c3fb0;
+    --paleta_B: #452870;
+    --paleta_C: #9457f0;
+    --paleta_D: #9c5bfc;
+    --paleta_E: #844dd6;
+}
+
+body{
+    font-family:'Courier New', Courier, monospace;
+}
+
+/*
+    align-content: center;
+    align-items: center;
+    place-content: center;
+    place-items: center;
+    place-items: center;
+    place.content: center;
+    */
+
+.main{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: 30% 70%;
+    grid-row-gap: 2fr;
+}
+
+
+.p1 {
+    display: grid;
+    /*place-items: ;*/
+    grid-template-columns: 30% 70%;
+    place-items: center stretch;
+    width: 100%;
+    height: 40vh;
+}
+.logo{
+    display: grid;
+    place-items: center;
+}
+
+.logo_main{
+    width: 160px;
+    height: 120px;
+}
+.cuadro{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    place-items: center;
+    background-color: var(--paleta_B);
+    border-radius: 20px;
+    border-style: ridge;
+    border-width: 2px;
+    border-color: black;
+    width: 650px;
+    height: 100px;
+}
+
+.logo_user{
+    width: 50px;
+    height: 50px;
+}
+
+.p2{
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
+
+.datos1{
+    display: grid;
+    justify-items: center;
+}
+
+.p_ref{
+    width: 180px;
+    height: auto;
+}
+
+.my_pub{
+    width: 140px;
+    height: 100px;
+}
+
+.form{
+    display: grid;
+}
+
+.label{
+    display: grid;
+    place-items: center start;
+    color: white;
+    background-color: var(--paleta_B);
+    border-width: 2px;
+    border-style:solid;
+    border-color: black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: auto;
+    text-indent: 1em;
+}
+
+.input {
+    border-width: 1px;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+    border-radius: 10px;
+    border-color: black;
+    margin-bottom: 5px;
+    width: auto;
+    text-indent: 1em;
+}
+
+
+.forgot_password{
+    color: var(--paleta_D);
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.button_login{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center stretch;
+    grid-column-gap: 10px;
+}
+
+button.primary_button{
+    background-color: var(--paleta_B);
+    color: white;
+    border-width: 2px;
+    border-style:solid;
+    border-color: black;
+    border-radius: 10px;
+    width: auto;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.pub{
+    display: grid;
+    place-items: center;
+}
+
+.img_pub{
+    width: auto;
+    height: auto;
+    margin: 30px;
+}

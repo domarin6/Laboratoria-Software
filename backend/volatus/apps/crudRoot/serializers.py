@@ -4,8 +4,8 @@ from apps.crudRoot.models import Usuario, InfoRoot
 class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ('DNI', 'nombre')
-        
+        fields = ('DNI', 'username', 'nombre')
+
 class AdministradoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario

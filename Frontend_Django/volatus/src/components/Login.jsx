@@ -1,29 +1,24 @@
 //import LoginScreen from '../functions/LoginScreen'
 
-import React from 'react';
-import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-
-import { useForm } from '../../hooks/useForm';
-import { startLogin } from '../../actions/auth';
+import React from 'react'
 
 import '../css/iniciar_sesion.css';
 import imagenes from './assets/imagenes';
 
+import { useForm } from './hooks/useForm';
+import { startLogin } from './Functions/loginFunction';
+
 function Login() {
-
-  const dispatch = useDispatch();
-
   const [ formValues, handleInputChange ] = useForm({
-      username: '',
-      password: ''
-  });
+        username: '',
+        password: ''
+    });
 
     const { username, password } = formValues;
 
     const handleLogin = (e) =>{
         e.preventDefault();
-        dispatch( startLogin( username , password ) );
+        startLogin( username , password );
     }
 
     return (
@@ -46,15 +41,29 @@ function Login() {
                     </img>
                     <p className="p_ref">Texto de referencia sobre algún producto.</p>
                 </div>
-                <form action="/" className="form">
+                <form onSubmit={ handleLogin } className="form">
                     <label htmlFor="email" className="label">Usuario</label>
-                    <input type="email" placeholder="example@gmail.com" id="email" className="input input-user" name="username" />
+                    <input
+                      type="email"
+                      placeholder="example@gmail.com"
+                      id="email"
+                      className="input input-user"
+                      name="username"
+                      value={ username }
+                      onChange={ handleInputChange } />
                     <label htmlFor="password" className="label">Contraseña</label>
-                    <input type="password" placeholder="*********" id="password" className="input input-password" name="password" />
+                    <input
+                      type="password"
+                      placeholder="*********"
+                      id="password"
+                      className="input input-password"
+                      name="password"
+                      value={ password }
+                      onChange={ handleInputChange } />
                     <a href="/" className="forgot_password">Olvide mi contraseña</a>
                     <div className="button">
                         <span className="button_login">
-                            <button className="button primary_button">Confirmar</button>
+                            <button type="submit" className="button primary_button">Confirmar</button>
                             <button className="button primary_button">Volver</button>
                         </span>
                     </div>

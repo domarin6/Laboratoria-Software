@@ -1,3 +1,14 @@
+// import React from "react";
+
+// const Login = () => {
+//     return (
+//         <div>
+//             login
+//         </div>
+//     );
+// }
+// export default Login
+
 //import LoginScreen from '../functions/LoginScreen'
 
 import React from 'react'
@@ -45,8 +56,8 @@ function Login() {
                 <form onSubmit={ handleLogin } className="form">
                     <label htmlFor="email" className="label">Usuario</label>
                     <input
-                      type="email"
-                      placeholder="example@gmail.com"
+                      type="text"
+                      placeholder="example_123"
                       id="email"
                       className="input input-user"
                       name="username"

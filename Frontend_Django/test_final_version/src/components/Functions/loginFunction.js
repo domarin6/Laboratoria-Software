@@ -20,7 +20,6 @@ export const startLogin = async (username, password) => {
       localStorage.setItem('username',body.user.username);
       localStorage.setItem('DNI',body.user.DNI);
       localStorage.setItem('name',body.user.nombre);
-      localStorage.setItem('rol',body.user.rol)
 
       timerNotification( 'Inicio de Sesion Exitoso!' );
       window.location.href="./gestionar-admin";

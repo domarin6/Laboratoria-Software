@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from apps.crudRoot.models import Usuario, InfoRoot
+from apps.crudRoot.models import Administrador, Usuario, InfoRoot
+
+from datetime import datetime
 
 class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,11 +10,32 @@ class UserTokenSerializer(serializers.ModelSerializer):
 
 class AdministradoresSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuario
-        fields = '__all__'
+        model = Administrador
+        exclude = ('groups', 'user_permissions', )
+
+    def validate_fecha_de_nacimiento(self, value):
+        if ( value != None):
+            today = date.today()
+            try:
+                birthday = value.replace(year = today.year)
+
+            except ValueError:
+                birthday = value.replace(year = today.year, month = value.month + 1, day = 1)
+
+            if birthday > today:
+                age = today.year - value.year - 1
+            else:
+                age = today.year - value.year
+
+            if(age >= 18):
+                return value
+            else: serializers.ValidationError('El usuario es menor de edad')
+
+        return value
+
 
     def create(self, validated_data):
-        administrador = Usuario(**validated_data)
+        administrador = Administrador(**validated_data)
         administrador.set_password(validated_data['password'])
         administrador.save()
         return administrador
@@ -25,7 +48,7 @@ class AdministradoresSerializer(serializers.ModelSerializer):
 
 class AdministradoresListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuario
+        model = Administrador
 
     def to_representation(self, instance):
         return {

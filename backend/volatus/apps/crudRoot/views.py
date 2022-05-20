@@ -4,8 +4,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import AdministradoresSerializer, AdministradoresListSerializer
-
-from apps.crudRoot.models import Usuario, InfoRoot
+from apps.base.utils import validate_files
+from apps.crudRoot.models import Administrador, InfoRoot
 
 #/*@api_view(['GET'])
 #def RootDetail(request):
@@ -32,13 +32,14 @@ def administradoresList(request):
     if request.method == 'GET':
 
         # queryset
-        administradores = Usuario.objects.all().values('DNI', 'nombre')
+        administradores = Administrador.objects.all().values('DNI', 'nombre')
         serializer = AdministradoresListSerializer(administradores, many=True)
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     # create
     elif request.method == 'POST':
-        serializer = AdministradoresSerializer(data = request.data)
+        data = validate_files(request.data,'imagen_de_usuario')
+        serializer = AdministradoresSerializer(data = data)
 
         # validation
         if serializer.is_valid():
@@ -54,7 +55,7 @@ def administradoresList(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def administradorDetail(request, pk=None):
     #queryset
-    administrador = Usuario.objects.filter(id=pk).first()
+    administrador = Administrador.objects.filter(DNI=pk).first()
 
     #validation
     if administrador:
@@ -66,7 +67,8 @@ def administradorDetail(request, pk=None):
 
         # update
         elif request.method == 'PUT':
-            serializer = AdministradoresSerializer(administrador, request.data)
+            data = validate_files(request.data,'imagen_de_usuario', True)
+            serializer = AdministradoresSerializer(administrador, data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status = status.HTTP_200_OK)
@@ -80,17 +82,16 @@ def administradorDetail(request, pk=None):
     return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
 
 
-
 @api_view(['POST'])
 def administradorCreate(request):
-	serializer = AdministradoresSerializer(data=request.data)
-	if serializer.is_valid():
-		serializer.save()
-	return Response(serializer.data)
+    serializer = AdministradoresSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def administradorUpdate(request, pk):
-	administrador = Usuario.objects.get(id=pk)
+	administrador = Administrador.objects.get(DNI=pk)
 	serializer = AdministradoresSerializer(instance=administrador, data=request.data)
 	if serializer.is_valid():
 		serializer.save()
@@ -99,7 +100,7 @@ def administradorUpdate(request, pk):
 
 @api_view(['DELETE'])
 def administradorDelete(request, pk):
-	administrador = Usuario.objects.get(id=pk)
+	administrador = Administrador.objects.get(DNI=pk)
 	administrador.delete()
 
 	return Response('Item succsesfully delete!')

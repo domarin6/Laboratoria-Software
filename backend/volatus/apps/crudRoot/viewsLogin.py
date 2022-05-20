@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.contrib.sessions.models import Session
 
@@ -7,11 +7,30 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
-
+from apps.crudRoot.authentication_mixins import Authentication
 from apps.crudRoot.serializers import UserTokenSerializer
 
-class Login(ObtainAuthToken):
+class UserToken(APIView):
+    """
+    Validate Token
+    """
 
+    def get(self, request,*args,**kwargs):
+        try:
+            user_token = Token.objects.get(user = self.user)
+            user = UserTokenSerializer(self.user)
+            return Response({
+                'token': user_token.key,
+                'user': user.data
+            })
+        except:
+            return Response({
+                'error': 'Credenciales enviadas incorrectas. '
+            }, status = status.HTTP_400_BAD_REQUEST)
+
+
+class Login(ObtainAuthToken):
+    authentication_classes = []
     def post(self, request, *args, **kwargs):
         login_serializer = self.serializer_class(data = request.data, context = {'resquest': request})
         if login_serializer.is_valid():
@@ -26,25 +45,24 @@ class Login(ObtainAuthToken):
                         'message': 'Inicio de sesión exitoso'
                     }, status = status.HTTP_201_CREATED)
                 else:
-                    """
-                    all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
+                    all_sessions = Session.objects.filter(expire_date__gte = timezone.now())
                     if all_sessions.exists():
                         for session in all_sessions:
                             session_data = session.get_decoded()
-                            if user.id == int(session_data.get('_auth_user_id')):
+                            if user.DNI == int(session_data.get('_auth_user_id')):
                                 session.delete()
                     token.delete()
-                    token = token.objects.create(user = user)
+                    token = Token.objects.create(user = user)
                     return Response({
                         'token': token.key,
-                        'user': user_serielizer.data,
+                        'user': user_serializer.data,
                         'message': 'Inicio de sesión exitoso'
                     }, status = status.HTTP_201_CREATED)
                     """
-                    token.delete()
                     return Response({
                      'error': 'Ya se ha iniciado sesión con este usuario.'
                     }, status = status.HTTP_409_CONFLICT)
+                    """
             else:
                 return Response({
                     ' error': 'Este usuario no puede iniciar sesión.'

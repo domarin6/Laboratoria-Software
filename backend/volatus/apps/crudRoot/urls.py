@@ -1,11 +1,12 @@
 from django.urls import path
 from . import views
-from apps.crudRoot.viewsLogin import Login, Logout
+from apps.crudRoot.viewsLogin import Login, Logout, UserToken
 
 urlpatterns = [
     path('Login/', Login.as_view(), name = 'Login'),
     path('Logout/', Logout.as_view(), name = 'Logout'),
     path('', views.crudRootView, name='crud-Root-View'),
+    path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
     path('administradores-list/', views.administradoresList, name='administradores-list'),
     path('administradores-detail/<str:pk>/', views.administradorDetail, name='administradores-detail'),
     path('administradores-create/', views.administradorCreate, name='administradores-create'),

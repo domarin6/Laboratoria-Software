@@ -31,6 +31,8 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.crudRoot',
+    'apps.flights',
+    'apps.base',
 ]
 
 THIRD_APPS = [
@@ -41,6 +43,9 @@ THIRD_APPS = [
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
+
+TOKEN_EXPIRED_AFTER_SECONDS = 2700
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -98,13 +103,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
+USE_TZ = True
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
 
 AUTH_USER_MODEL = 'crudRoot.Usuario'
 

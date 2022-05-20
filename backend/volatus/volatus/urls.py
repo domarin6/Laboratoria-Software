@@ -20,4 +20,5 @@ urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('crudRoot/', include('apps.crudRoot.urls')),
+    path('flights/',include('apps.flights.api.routers')),
 ]

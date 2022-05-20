@@ -3,7 +3,8 @@ import {
     BrowserRouter as Router,
     Route,
     Link,
-    Routes
+    Routes,
+    NavLink
 } from "react-router-dom";
 import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
@@ -16,13 +17,13 @@ function App() {
     <Router>
             <div className="container mt-3">
                 <div className="btn-group">
-                    <Link to="/vuelos" className="btn btn-dark">Vuelos</Link>
-                    <Link to="/contacto" className="btn btn-outline-dark">Contacto</Link>
+                    <NavLink to="/vuelos" className="btn btn-dark" activeClassName="active">Vuelos</NavLink>
+                    <NavLink to="/contacto" className="btn btn-dark" activeClassName="active">Contacto</NavLink>
                 </div>
 
                 <div className="btn-group">
-                    <Link to="/iniciar-sesion" className="btn btn-outline-dark">Login</Link>
-                    <Link to="/registro" className="btn btn-outline-dark">Register</Link>
+                    <NavLink to="/iniciar-sesion" className="btn btn-dark" activeClassName="active">Login</NavLink>
+                    <NavLink to="/registro" className="btn btn-dark" activeClassName="active">Register</NavLink>
                 </div>
                 <hr />
                 <Routes>

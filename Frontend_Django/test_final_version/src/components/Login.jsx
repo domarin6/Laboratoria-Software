@@ -1,16 +1,3 @@
-// import React from "react";
-
-// const Login = () => {
-//     return (
-//         <div>
-//             login
-//         </div>
-//     );
-// }
-// export default Login
-
-//import LoginScreen from '../functions/LoginScreen'
-
 import React from 'react'
 
 import '../css/iniciar_sesion.css';

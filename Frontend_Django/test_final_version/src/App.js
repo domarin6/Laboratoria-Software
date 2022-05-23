@@ -9,7 +9,7 @@ import {
 import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import Register1 from "./components/Register1";
 import Vuelos from "./components/Vuelos";
 
 function App() {
@@ -22,15 +22,15 @@ function App() {
                 </div>
 
                 <div className="btn-group">
-                    <NavLink to="/iniciar-sesion" className="btn btn-dark" activeClassName="active">Login</NavLink>
-                    <NavLink to="/registro" className="btn btn-dark" activeClassName="active">Register</NavLink>
+                    <NavLink to="/iniciar-sesion" className="btn btn-dark" activeClassName="active">Iniciar Sesión</NavLink>
+                    <NavLink to="/registro" className="btn btn-dark" activeClassName="active">Registrarse</NavLink>
                 </div>
                 <hr />
                 <Routes>
                     <Route path="/contacto" element={<Contacto />} />
                     <Route path="/vuelos" element={<Vuelos />} />
                     <Route path="/iniciar-sesion" element={<Login />} />
-                    <Route path="/registro" element={<Register />} />
+                    <Route path="/registro" element={<Register1 />} />
                     <Route path="/"  element={<Inicio />} />
                 </Routes>
             </div>

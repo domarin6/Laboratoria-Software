@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import CharField
 
 from apps.base.models import BaseModel
 
@@ -8,6 +7,8 @@ class CategoryFlight(BaseModel):
 
     # TODO: Define fields here
     description = models.CharField('Descripcion', max_length=50,unique = True,null = False,blank = False)
+    capacidad_pasajeros = models.IntegerField('Capacidad de pasajeros')
+    tipo = models.CharField('Solo ida o ida-vuelta', max_length=20, blank = True, null = False)
 
     class Meta:
         """Meta definition for CategoryFlight."""

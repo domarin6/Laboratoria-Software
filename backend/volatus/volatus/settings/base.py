@@ -33,6 +33,7 @@ LOCAL_APPS = [
     'apps.crudRoot',
     'apps.flights',
     'apps.base',
+    'apps.tickets',
 ]
 
 THIRD_APPS = [

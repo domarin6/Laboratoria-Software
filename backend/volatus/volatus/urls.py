@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('crudRoot/', include('apps.crudRoot.urls')),
     path('flights/',include('apps.flights.api.routers')),
+    path('tickets/',include('apps.tickets.api.routers')),
 ]

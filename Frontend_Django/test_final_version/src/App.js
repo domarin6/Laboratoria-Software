@@ -9,6 +9,7 @@ import {
 import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
 import Login from "./components/Login";
+import Product from "./components/Product";
 import Register1 from "./components/Register1";
 import Vuelos from "./components/Vuelos";
 
@@ -17,7 +18,8 @@ function App() {
     <Router>
             <div className="container mt-3">
                 <div className="btn-group">
-                    <NavLink to="/vuelos" className="btn btn-dark" activeClassName="active">Vuelos</NavLink>
+                    <NavLink to="/" className='btn btn-dark' activeClassName='active'>Inicio</NavLink>
+                    <NavLink to="/productos" className="btn btn-dark" activeClassName="active">Vuelos</NavLink>
                     <NavLink to="/contacto" className="btn btn-dark" activeClassName="active">Contacto</NavLink>
                 </div>
 
@@ -31,6 +33,7 @@ function App() {
                     <Route path="/vuelos" element={<Vuelos />} />
                     <Route path="/iniciar-sesion" element={<Login />} />
                     <Route path="/registro" element={<Register1 />} />
+                    <Route path="/productos" element={<Product />} />
                     <Route path="/"  element={<Inicio />} />
                 </Routes>
             </div>

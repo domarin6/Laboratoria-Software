@@ -1,5 +1,6 @@
 import React from "react";
 import imagenes from "./assets/imagenes";
+import '../css/create_user.css'
 
 function Register2(){
     return (

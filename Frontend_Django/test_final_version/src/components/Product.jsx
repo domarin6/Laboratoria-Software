@@ -13,8 +13,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ClassNames } from '@emotion/react';
 import { AddShoppingCart } from '@mui/icons-material'
-
 import imagenes from './assets/imagenes';
+import accounting from 'accounting';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,7 +27,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard() {
+export default function Product({product:{id, img, destination, rating, price, description, full_description} }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -43,21 +43,21 @@ export default function RecipeReviewCard() {
         //   </Avatar>
         // }
         action={
-            <Typography className={ClassNames.action} variant='h5' color='textSecondary'>{'$850.000'}</Typography>
+            <Typography className={ClassNames.action} variant='h5' color='textSecondary'>{price}</Typography>
         }
-        title="San Andres"
-        subheader="Islas paradisiacas de Colombia"
+        title={destination}
+        subheader="TEXTO DE EJEMPLO"
       />
       <CardMedia
         component="img"
         height="194"
         // image={imagenes.src_pub1}
-        image = 'https://i.ytimg.com/vi/vPJS2moVUFA/maxresdefault.jpg'
-        alt="Paella dish"
+        image = {img}
+        alt="Destino"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-            San Andrés es una isla colombiana del mar Caribe, frente a la costa de Nicaragua. Es conocida por los arrecifes de coral y la música reggae.
+            {description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -65,7 +65,7 @@ export default function RecipeReviewCard() {
           <AddShoppingCart />
         </IconButton>
         <IconButton>
-            {Array(4)
+            {Array(rating)
               .fill()
               .map((_, i) => (
                   <p>&#11088;</p>
@@ -84,12 +84,8 @@ export default function RecipeReviewCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Nothing
-          </Typography>
-          <Typography paragraph>
-            La encendida playa Spratt Bight tiene un paseo costero bordeado de palmeras. En el litoral está el Parque Johnny Cay, una pequeña isla con mangles de cocos y playas de arena blanca. El Parque Regional de Mangle Old Point es un santuario de vida silvestre con cangrejos, iguanas y aves.
+          <Typography paragraph >
+            {full_description}
           </Typography>
         </CardContent>
       </Collapse>

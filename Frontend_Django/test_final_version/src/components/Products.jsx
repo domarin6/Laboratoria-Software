@@ -8,12 +8,10 @@ import products from "../components/Functions/info-product"
 
 const Item = styled(Paper)(({ theme }) => ({
   root:{
-      flexGrow:1,
-      padding: theme.spacing(3),
+      flexGrow:5,
+      padding: theme.spacing(10),
   },
 
-
-  
 }));
 
 export default function Products() {

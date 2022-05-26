@@ -14,6 +14,7 @@ import {
 import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
 import Login from "./components/Login";
+import Manage_ADM from "./components/Manage_ADM";
 import Product from "./components/Product";
 import Products from "./components/Products";
 import Register1 from "./components/Register1";
@@ -40,6 +41,10 @@ function App() {
                 </div>
 
                 <div className="btn-group">
+                    <NavLink to="/gestionar-adm" className='btn btn-dark' activeClassName='active'> Gestionar Admin </NavLink>
+                </div>
+
+                <div className="btn-group">
                     <NavLink to="/iniciar-sesion" className="btn btn-dark" activeClassName="active">Iniciar Sesión</NavLink>
                     <NavLink to="/registro" className="btn btn-dark" activeClassName="active">Registrarse</NavLink>
                 </div>
@@ -58,6 +63,7 @@ function App() {
                     <Route path="/registro" element={<Register1 />} />
                     {/* <Route path="/productos" element={<Product />} /> */}
                     <Route path="/productos" element={<Products/>} />
+                    <Route path="/gestionar-adm" element={<Manage_ADM />} />
                     <Route path="/"  element={<Inicio />} />
                 </Routes>
             </div>

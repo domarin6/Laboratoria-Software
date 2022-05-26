@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../css/iniciar_sesion.css';
+import styles from '../css/login.module.css';
 import imagenes from './assets/imagenes';
 
 import { useForm } from './hooks/useForm';
@@ -21,55 +21,54 @@ function Login() {
     }
 
     return (
-      <div className="App">
-        <div className="main">
-            <div className="p1">
-                <div className="logo">
-                    <img src={imagenes.src_volatus_logo} className="logo_main img">
+      <div className={styles.App}>
+        <div className={styles.main}>
+            <div className={styles.p1}>
+                <div className={styles.logo}>
+                    <img src={imagenes.src_volatus_logo} className={styles.logo_main} img>
                     </img>
                 </div>
-                <div className="cuadro">
+                <div className={styles.cuadro}>
                     <h1>Iniciar Sesión</h1>
-                    <img src={imagenes.src_user_logo} alt="logo_user" className="img logo_user">
+                    <img src={imagenes.src_user_logo} alt="logo_user" className={styles.logo_user}>
                     </img>
                 </div>
             </div>
-            <div className="p2">
-                <div className="datos1">
-                    <img src={imagenes.src_ref} alt="my_pub" className="img my_pub">
+            <div className={styles.p2}>
+                <div className={styles.datos1}>
+                    <img src={imagenes.src_ref} alt="my_pub" className= {styles.my_pub}>
                     </img>
-                    <p className="p_ref">Texto de referencia sobre algún producto.</p>
+                    <p className={styles.p_ref}>Texto de referencia sobre algún producto.</p>
                 </div>
-                <form onSubmit={ handleLogin } className="form">
-                    <label htmlFor="email" className="label">Usuario</label>
+                <form onSubmit={ handleLogin } className={styles.form}>
+                    <label htmlFor="email" className={styles.label}>Usuario</label>
                     <input
                       type="text"
                       placeholder="example_123"
                       id="email"
-                      className="input input-user"
+                      className={styles.input}
                       name="username"
                       value={ username }
                       onChange={ handleInputChange } />
-                    <label htmlFor="password" className="label">Contraseña</label>
+                    <label htmlFor="password" className={styles.label}>Contraseña</label>
                     <input
                       type="password"
                       placeholder="*********"
                       id="password"
-                      className="input input-password"
+                      className={styles.input}
                       name="password"
                       value={ password }
                       onChange={ handleInputChange } />
-                    <a href="/" className="forgot_password">Olvide mi contraseña</a>
-                    <div className="button">
-                        <span className="button_login">
-                            <button type="submit" className="button primary_button">Confirmar</button>
-                            <button className="button primary_button">Volver</button>
+                    <a href="/" className={styles.forgot_password}>Olvide mi contraseña</a>
+                    <div className={styles.button}>
+                        <span className={styles.button_login}>
+                            <button type="submit" className={styles.primary_button}>Confirmar</button>
+                            <button className={styles.primary_button}>Volver</button>
                         </span>
                     </div>
                 </form>
-                <div className="pub">
-                    <img src={imagenes.src_pub1} alt="pub" className="img_pub">
-                    </img>
+                <div className={styles.pub}>
+                    <img src={imagenes.src_pub1} alt="pub" className={styles.img_pub}/>
                 </div>
             </div>
         </div>

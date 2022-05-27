@@ -1,11 +1,12 @@
 from django.shortcuts import render
+from django.views import View
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import AdministradoresSerializer, AdministradoresListSerializer
 from apps.base.utils import validate_files
-from apps.crudRoot.models import Administrador, InfoRoot
+from apps.crudRoot.models import Administrador, InfoRoot, Cliente
 
 #/*@api_view(['GET'])
 #def RootDetail(request):
@@ -81,6 +82,67 @@ def administradorDetail(request, pk=None):
 
     return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
 
+class UserCliente(View):
+    def get(self,request):
+        if('listar' in request.GET):
+            users=Cliente.objects.all()
+            return JsonResponse(list(Cliente.values('correo','nombre')),safe=False,status=200)
+        else:
+            return JsonResponse({'Resp':'No implementado'},safe=False,status=404)
+
+
+    def post(self,request):
+        if('login' in request.POST):
+            if(('correo' in request.POST) and ('contrasenia' in request.POST)):
+                correoRequest=request.POST['correo']
+                contraseniaRequest=request.POST['contrasenia']
+                user=Cliente.objects.filter(correo=correoRequest, contrasenia=contraseniaRequest)
+                if(user.count()>0):
+                    return JsonResponse({'Resp':True,'Rol':user.first().rol},safe=False,status=200)
+                else:
+                    return JsonResponse({'Resp':False},safe=False,status=200)
+            else:
+                return JsonResponse({'Resp':False},safe=False,status=400)
+
+
+        elif('create' in request.POST):
+            if(('id' in request.POST) and 
+                ('name' in request.POST) and 
+                ('password' in request.POST)):
+                try:
+                    DNIRequest=request.POST['id']
+                    nombreRequest=request.POST['name']
+                    passwordRequest=request.POST['password']
+                    apellidoRequest=request.POST['lastName']
+                    usernameRequest=request.POST['username']
+                    fecha_de_nacimientoRequest=request.POST['birthDate']
+                    #lugar_de_nacimientoRequest=request.POST['']
+                    #direccion_de_facturacionRequest=request.POST['direccion_de_facturacion']
+                    generoRequest=request.POST['genre']
+                    #correo_electronicoRequest=request.POST['correo_electronico']
+                    #imagen_de_usuarioRequest=request.POST['imagen_de_usuario']
+                except:
+                    return JsonResponse({'Resp':False},safe=False,status=400)
+                try:
+                    newUser=Cliente.objects.create(DNI=DNIRequest,
+                                                nombre=nombreRequest,
+                                                apellido=apellidoRequest,
+                                                username=usernameRequest,
+                                                fecha_de_nacimiento=fecha_de_nacimientoRequest,
+                                                #lugar_de_nacimiento=lugar_de_nacimientoRequest,
+                                                #direccion_de_facturacion=direccion_de_facturacionRequest,
+                                                genero=generoRequest,
+                                                #correo_electronico=correo_electronicoRequest,
+                                                #imagen_de_usuario=imagen_de_usuarioRequest,
+                                                password=passwordRequest,
+                                                 )
+                    return JsonResponse({'Resp':True},safe=False,status=201)
+                except:
+                    return JsonResponse({'Resp':False},safe=False,status=202)
+            else:
+                return JsonResponse({'Resp':False},safe=False,status=400)
+        else:
+            return JsonResponse({'Resp':'No implementado'},safe=False,status=404)
 
 @api_view(['POST'])
 def administradorCreate(request):

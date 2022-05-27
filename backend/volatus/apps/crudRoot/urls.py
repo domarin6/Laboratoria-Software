@@ -1,6 +1,8 @@
 from django.urls import path
-from . import views
 from apps.crudRoot.viewsLogin import Login, Logout, UserToken
+from apps.crudRoot.views import UserCliente
+from django.views.decorators.csrf import csrf_exempt
+from . import views
 
 urlpatterns = [
     path('Login/', Login.as_view(), name = 'Login'),
@@ -12,5 +14,6 @@ urlpatterns = [
     path('administradores-create/', views.administradorCreate, name='administradores-create'),
     path('administradores-update/<str:pk>/', views.administradorUpdate, name='administradores-update'),
     path('administradores-delete/<str:pk>/', views.administradorDelete, name='administradores-delete'),
+    path('cliente', csrf_exempt(UserCliente.as_view()) , name='clientes'),
 
 ]

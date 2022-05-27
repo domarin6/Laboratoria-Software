@@ -19,6 +19,7 @@ import Product from "./components/Product";
 import Products from "./components/Products";
 import Register1 from "./components/Register1";
 import Vuelos from "./components/Vuelos";
+import CheckoutPage from "./components/CheckoutPage";
 
 // const useStyles = makeStyles((theme) =>({
 //     root: {
@@ -51,7 +52,9 @@ function App() {
 
                 <IconButton aria-label="show cart items" color='inherit'>
                     <Badge badgeContent={2} color='secondary'>
-                        <ShoppingCart fontSize="large" color="primary"/>
+                        {/* <ShoppingCart fontSize="large" color="primary"/> */}
+                        <CheckoutPage/>
+
                     </Badge>
                 </IconButton>
                 

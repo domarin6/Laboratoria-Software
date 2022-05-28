@@ -25,7 +25,7 @@ function Login() {
         <div className={styles.main}>
             <div className={styles.p1}>
                 <div className={styles.logo}>
-                    <img src={imagenes.src_volatus_logo} className={styles.logo_main} img>
+                    <img src={imagenes.src_volatus_logo} alt="logo" className={styles.logo_main} img>
                     </img>
                 </div>
                 <div className={styles.cuadro}>

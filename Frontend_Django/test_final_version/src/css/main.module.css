@@ -14,3 +14,17 @@
 .colorLetra1 {
     color: white;
 }
+
+.p1 {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}
+
+.p2 {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+}

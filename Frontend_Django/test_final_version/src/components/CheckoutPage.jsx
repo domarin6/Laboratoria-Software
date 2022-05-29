@@ -1,13 +1,13 @@
 import React from 'react';
-import { makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from '@mui/material/styles';
 import Grid from "@material-ui/cor/Grid";
-import { Typography } from "@material-ui/core";
-import { useStateValue } from "../CheckoutCard";
-import products from "../product-data"
+import Typography from '@mui/material/Typography';
+import CheckoutCard from "./CheckoutCard";
+import products from "../components/Functions/info-product"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1;
+        flexGrow: 1,
         padding: "2rem",
     },
 }));

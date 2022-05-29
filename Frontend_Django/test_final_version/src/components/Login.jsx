@@ -25,7 +25,7 @@ function Login() {
         <div className={styles.main}>
             <div className={styles.p1}>
                 <div className={styles.logo}>
-                    <img src={imagenes.src_volatus_logo} className={styles.logo_main} img>
+                    <img src={imagenes.src_volatus_logo} alt="logo" className={styles.logo_main} img>
                     </img>
                 </div>
                 <div className={styles.cuadro}>
@@ -36,9 +36,9 @@ function Login() {
             </div>
             <div className={styles.p2}>
                 <div className={styles.datos1}>
-                    <img src={imagenes.src_ref} alt="my_pub" className= {styles.my_pub}>
+                    <img src="https://content.r9cdn.net/rimg/dimg/a1/98/0d5f3612-city-10076-177d80eab0a.jpg?crop=true&width=1366&height=768&xhint=3300&yhint=1766" alt="my_pub" className= {styles.my_pub}>
                     </img>
-                    <p className={styles.p_ref}>Texto de referencia sobre algún producto.</p>
+                    <p className={styles.p_ref}>Santa Marta es una ciudad ubicada en el mar Caribe, en el departamento de Magdalena en el norte de Colombia.</p>
                 </div>
                 <form onSubmit={ handleLogin } className={styles.form}>
                     <label htmlFor="email" className={styles.label}>Usuario</label>

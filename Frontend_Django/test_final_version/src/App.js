@@ -1,7 +1,6 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { IconButton, makeStyles } from "@mui/material";
+import { IconButton } from "@mui/material";
 import Badge from '@mui/material/Badge';
-import Typography from '@mui/material/Typography';
 
 import React from "react";
 import {
@@ -15,11 +14,11 @@ import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
 import Login from "./components/Login";
 import Manage_ADM from "./components/Manage_ADM";
-import Product from "./components/Product";
+// import Product from "./components/Product";
 import Products from "./components/Products";
 import Register1 from "./components/Register1";
 import Vuelos from "./components/Vuelos";
-import CheckoutPage from "./components/CheckoutPage";
+// import CheckoutPage from "./components/CheckoutPage";
 
 // const useStyles = makeStyles((theme) =>({
 //     root: {
@@ -52,8 +51,8 @@ function App() {
 
                 <IconButton aria-label="show cart items" color='inherit'>
                     <Badge badgeContent={2} color='secondary'>
-                        {/* <ShoppingCart fontSize="large" color="primary"/> */}
-                        <CheckoutPage/>
+                        <ShoppingCart fontSize="large" color="primary"/>
+                        {/* <CheckoutPage/> */}
 
                     </Badge>
                 </IconButton>

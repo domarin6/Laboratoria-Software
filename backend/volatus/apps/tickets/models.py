@@ -5,12 +5,14 @@ from apps.crudRoot.models import Cliente
 from apps.flights.models import Flight
 
 
+
+
 class OrderItem(BaseModel):
-    cliente = models.ForeignKey(Cliente, related_name='cliente',on_delete=models.CASCADE, verbose_name='Cliente', null=False)
-    vuelo = models.ManyToManyField(Flight, related_name='items', verbose_name='items', null=False)
+    vuelo =  models.ForeignKey(Flight, related_name='Flights_cart', on_delete=models.CASCADE, verbose_name='Vuelo en el carrito de compra')
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    cantidad = models.PositiveBigIntegerField(default=1)
-    
+    cantidad = models.PositiveBigIntegerField(default=0)
+    cliente = models.PositiveBigIntegerField()
+
 
     class Meta:
         """Meta definition for OrderItem."""
@@ -22,8 +24,25 @@ class OrderItem(BaseModel):
         """Unicode representation of OrderItem."""
         return str(self.id)
 
+class ShoppingCart(BaseModel):
+    orders = models.ForeignKey(OrderItem, related_name='orders', on_delete=models.CASCADE, verbose_name='Ordenes')
+    cantidadOrders = models.PositiveBigIntegerField(default=0, null=True)
+    precioTotal = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    cliente = models.ForeignKey(Cliente, related_name='cliente',on_delete=models.CASCADE, verbose_name='Cliente', null=False)
+
+    class Meta:
+        """Meta definition for ShoppingCart."""
+
+        verbose_name = 'Carrito de compra'
+        verbose_name_plural = 'Carrito de compra'
+
+    def __str__(self):
+        """Unicode representation of ShoppingCart."""
+        return str(self.id)
+
+
 class Order(BaseModel):
-    pedido = models.ForeignKey(OrderItem, related_name='order_item', on_delete=models.CASCADE, verbose_name='Pedido', null=False)
+    pedido = models.ForeignKey(ShoppingCart, related_name='order_item', on_delete=models.CASCADE, verbose_name='Pedido', null=False)
     DNI = models.CharField('Identificación', unique = True, max_length=11)
     nombre = models.CharField('Nombres',max_length=100, blank = False, null = False)
     apellido = models.CharField('Apellidos',max_length=100, blank = False, null = False)

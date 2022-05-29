@@ -78,7 +78,7 @@ def administradorDetail(request, pk=None):
         # delete
         elif request.method == 'DELETE':
             administrador.delete()
-            return Response({'message':'Item succsesfully delete!'}, status = status.HTTP_200_OK)
+            return Response({'message':'El usuario ha sido eliminado satisfactoriamente!'}, status = status.HTTP_200_OK)
 
     return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
 

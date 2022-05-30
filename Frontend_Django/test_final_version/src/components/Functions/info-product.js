@@ -39,7 +39,7 @@ const products = [{
     },
     {
         id: 5,
-        img: 'https://www.ibaguelimpia.com/assets/media/photo-ibague.jpg',
+        img: 'https://i0.wp.com/tolimaonline.com/wp-content/uploads/2020/08/Ibagu%C3%A9.jpg?zoom=2&resize=780%2C470&ssl=1',
         destination: 'Ibagué',
         rating: 3,
         price: '189.900',

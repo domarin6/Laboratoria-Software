@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ClassNames } from '@emotion/react';
-import { AddShoppingCart } from '@mui/icons-material'
+import { AddShoppingCart, ImageAspectRatio } from '@mui/icons-material'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Product({product:{id, img, destination, rating, price, description, full_description} }) {
+export default function Product({product:{img, destination, rating, price, description, full_description} }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

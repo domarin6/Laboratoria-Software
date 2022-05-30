@@ -1,0 +1,27 @@
+:root{
+    --paleta_A: #6c3fb0;
+    --paleta_B: #452870;
+    --paleta_C: #9457f0;
+    --paleta_D: #9c5bfc;
+    --paleta_E: #844dd6;
+    --paleta_F: #1171D9;
+    flex-grow: 1;
+    margin-bottom: "7rem";
+}
+.cuadro{
+    background-color: white;
+    box-shadow: "none";
+}
+.grow{
+    flex-grow: 1;
+}
+
+.button{
+    margin-left:10px;
+}
+
+.image{
+    margin-right: "10px";
+    height: "1rem";
+}
+

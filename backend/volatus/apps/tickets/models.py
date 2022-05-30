@@ -63,3 +63,33 @@ class Order(BaseModel):
         """Unicode representation of Order"""
         return self.nombre
 
+class Wallet(BaseModel):
+    cash = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    idcliente = models.ForeignKey(Cliente, related_name='propietario',on_delete=models.CASCADE, verbose_name='Cliente', null=False)
+
+    class Meta:
+        """Meta definition for Wallet."""
+
+        verbose_name = 'Wallet'
+        verbose_name_plural = 'Wallet'
+
+    def __str__(self):
+        """Unicode representation of Wallet"""
+        return str(self.cash)
+
+class Card(BaseModel):
+    idCliente = models.ForeignKey(Cliente, related_name='idCliente', on_delete=models.CASCADE, verbose_name='Cliente', null=False)
+    number= models.IntegerField()
+    expiration= models.DateField('Fecha de expiración', auto_now=False, auto_now_add=False, blank = False, null = True)
+    securityCode= models.IntegerField()
+    titularCard= models.CharField('Persona titular de la tarjeta', max_length=30, blank = False, null = False)
+
+    class Meta:
+        """Meta definition for Card."""
+
+        verbose_name = 'Tarjeta'
+        verbose_name_plural = 'Tarjetas'
+
+    def __str__(self):
+        """Unicode representation of Card"""
+        return str(self.number)

@@ -62,20 +62,18 @@ export default function Inicio(){
                 </div>
             </div>
 
-
-
             <div className={styles.quienesSomos}>
                 <div className={styles.p1}>
-                    <h1> <strong> ¿Quienes Somos? </strong></h1>
-                    <p>Somos una empresa la cual busca dar una facilidad a sus clientes en el momento de comprar sus tiquetes de viaje ya sean a nivel nacional o internacional se buscara dar la mejor relacion calida precio al usuario final</p>
+                    <h1> <strong> ¿Quiénes Somos? </strong></h1>
+                    <p>Somos una empresa la cual busca dar una facilidad a sus clientes en el momento de comprar sus tiquetes de viaje ya sean a nivel nacional o internacional se buscará dar la mejor relación calidad precio al usuario final.</p>
                 </div>
             </div>
 
             <div className={styles.misionVision}>
                 <div className={styles.p2}>
-                    <h1> <strong>Mision y Vision</strong> </h1>
-                    <p>Nuestra mision es brindar un ahorro de tiempo y dinero a nuestros clientes en el momento de comprar sus tiquetes, ya que se buscara tener los mejores precios del mercado.</p>
-                    <p>Para 2023 esperamos ser la aerolinea preferida por los pasajeros de aviones.</p>
+                    <h1> <strong>Misión y Visión</strong> </h1>
+                    <p>Nuestra misión es brindar un ahorro de tiempo y dinero a nuestros clientes en el momento de comprar sus tiquetes, ya que se buscará tener los mejores precios del mercado.</p>
+                    <p>Para 2023 esperamos ser la aerolínea preferida por los pasajeros de aviones.</p>
                 </div>
             </div>
 

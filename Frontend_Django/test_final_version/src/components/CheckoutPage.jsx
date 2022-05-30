@@ -2,17 +2,19 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import CheckoutCard from "./CheckoutCard";
 import Grid from '@mui/material/Grid';
-import products from "../components/Functions/info-product";
 import styles from '../css/checkoutPage.module.css';
-import Total from './Total';
+import Total from '../components/Total'
+import { useStateValue } from '../components/contextAPI/StateProvider'
 
 
 const CheckoutPage = () => {
 
+    const [{basket}, dispatch] = useStateValue();
+
     function FormRow() {
         return (
             <React.Fragment>
-                {products.map((item) => (
+                {basket.map((item) => (
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <CheckoutCard key={item.id} product={item} />
                     </Grid>
@@ -34,9 +36,9 @@ const CheckoutPage = () => {
                 </Grid>
                 <Grid item xs={12} sm={4} md={3}>
                     <Typography align='center' gutterBottom variant='h4'>
-                        Total
+                        <Total/>
                     </Typography>
-                </Grid>
+                </Grid>                
             </Grid>
         </div>
     );

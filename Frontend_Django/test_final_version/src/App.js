@@ -2,22 +2,23 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Route,
-    // Link,
-    Routes,
-    NavLink
+    Routes
 } from "react-router-dom";
-import Contacto from "./components/Contacto";
 import Inicio from "./components/Inicio";
-import Login from "./components/Login";
-import Manage_ADM from "./components/Manage_ADM";
 import NavBar from "./components/NavBar";
-import Product from "./components/Product";
 import Products from "./components/Products";
-import Register1 from "./components/Register1";
 import CheckoutPage from "./components/CheckoutPage";
+import SignInSide from "./components/SignIn";
+import SignUp from "./components/SignUp";
+
+// import Contacto from "./components/Contacto";
+// import Login from "./components/Login";
+// import Manage_ADM from "./components/Manage_ADM";
+// import Product from "./components/Product";
+// import Register1 from "./components/Register1";
 
 // const useStyles = makeStyles((theme) =>({
-//     root: {
+    //     root: {
 //         flexGrow:1,
 //     },
 //     grow: {
@@ -32,6 +33,8 @@ function App() {
             <NavBar/>
             <div className="App">
                 <Routes>
+                    <Route path="/signin" element={<SignInSide/>} />
+                    <Route path="/signup" element={<SignUp/> } />
                     <Route path="/checkout-page" element={<CheckoutPage/>}/>
                     <Route path="/vuelos" element={<Products/>}/>
                     <Route path="/" element={<Inicio/>}/>

@@ -10,10 +10,13 @@ import logo from '../components/assets/img/volatus_logo_removebg.png';
 import styles from '../css/nav.module.css';
 import { ShoppingCart } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../components/contextAPI/StateProvider'
 
 
 export default function NavBar() {
   
+  const [{basket}, dispatch] = useStateValue();
+
   return (
     <Box sx={{ flexGrow: 5 }} className={styles.root}>
       <AppBar position="static" className={styles.cuadro}>
@@ -41,15 +44,15 @@ export default function NavBar() {
           </Link>
 
           <div className={styles.button}>
-            <Button variant='outlined' color='inherit'>Crear Cuenta</Button>
+            <Link to="/signin">
+              <Button variant='outlined' color='inherit'>Iniciar Sesión</Button>
+            </Link>
           </div>
 
-          <Button color="inherit" variant='outlined'>Iniciar Sesión</Button>
-          
           
           <Link to="/checkout-page">
             <IconButton aria-label='mostrar items del carrito' color='inherit'>
-              <Badge badgeContent={2} color='secondary'>
+              <Badge badgeContent={basket.length} color='secondary'>
                 <ShoppingCart fontSize='large'/>  
               </Badge>
             </IconButton>

@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from apps.crudRoot.models import Administrador, Usuario, InfoRoot
+from apps.crudRoot.models import Administrador, Usuario, InfoRoot, Cliente
 
 from datetime import datetime
+
 
 class UserTokenSerializer(serializers.ModelSerializer):
     class Meta:
@@ -56,6 +57,33 @@ class AdministradoresListSerializer(serializers.ModelSerializer):
             'nombre': instance['nombre']
         }
 
+class ClientesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        exclude = ('groups', 'user_permissions', )
+
+    def create(self, validated_data):
+        cliente = Cliente(**validated_data)
+        cliente.set_password(validated_data['password'])
+        cliente.save()
+        return cliente
+
+    def update(self,instance,validated_data):
+        update_cliente = super().update(instance, validated_data)
+        update_cliente.set_password(validated_data['password'])
+        update_cliente.save()
+        return update_cliente
+
+class ClientesListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+
+    def to_representation(self, instance):
+        return {
+            'DNI': instance['DNI'],
+            'nombre': instance['nombre']
+        }
+           
 class InfoRootSerializer(serializers.ModelSerializer):
     class Meta:
         model = InfoRoot

@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import AdministradoresSerializer, AdministradoresListSerializer
+from .serializers import AdministradoresSerializer, AdministradoresListSerializer, ClientesSerializer, ClientesListSerializer
 from apps.base.utils import validate_files
 from apps.crudRoot.models import Administrador, InfoRoot, Cliente
 
@@ -81,6 +81,60 @@ def administradorDetail(request, pk=None):
             return Response({'message':'El usuario ha sido eliminado satisfactoriamente!'}, status = status.HTTP_200_OK)
 
     return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'POST'])
+def clientesList(request):
+
+    # list
+    if request.method == 'GET':
+
+        # queryset
+        clientes = Cliente.objects.all().values('DNI', 'nombre')
+        serializer = ClientesListSerializer(clientes, many=True)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+    # create
+    elif request.method == 'POST':
+        data = validate_files(request.data,'imagen_de_usuario')
+        serializer = ClientesSerializer(data = data)
+
+        # validation
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def clienteDetail(request, pk=None):
+    #queryset
+    cliente = Cliente.objects.filter(DNI=pk).first()
+
+    #validation
+    if cliente:
+
+        # retrieve
+        if request.method == 'GET':
+            serializer = ClientesSerializer(cliente, many=False)
+            return Response(serializer.data,status = status.HTTP_200_OK)
+
+        # update
+        elif request.method == 'PUT':
+            data = validate_files(request.data,'imagen_de_usuario', True)
+            serializer = ClientesSerializer(cliente, data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status = status.HTTP_200_OK)
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+        # delete
+        elif request.method == 'DELETE':
+            cliente.delete()
+            return Response({'message':'El usuario ha sido eliminado satisfactoriamente!'}, status = status.HTTP_200_OK)
+
+    return Response({'message':'No se ha encontrado un usuario con estos datos'}, status = status.HTTP_400_BAD_REQUEST)
+
+
+
 
 class UserCliente(View):
     def get(self,request):

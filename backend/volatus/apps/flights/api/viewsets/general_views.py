@@ -17,7 +17,7 @@ class CategoryFlightViewSet(viewsets.GenericViewSet):
         return self.get_serializer().Meta.model.objects.filter(state=True)
 
     def get_object(self):
-        return self.get_serializer().Meta.model.objects.filter(codigo=self.kwargs['pk'], state=True)
+        return self.get_serializer().Meta.model.objects.filter(id=self.kwargs['pk'], state=True)
 
     @action(detail=False, methods=['get'])
     def get_categories(self, request):

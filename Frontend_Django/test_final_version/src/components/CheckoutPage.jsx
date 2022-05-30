@@ -1,5 +1,25 @@
+<<<<<<< HEAD
 import React from 'react';
 // import { makeStyles} from "@material-ui/core/styles";
+=======
+<<<<<<< HEAD
+import React from 'react';
+import { makeStyles } from '@mui/material/styles';
+import Grid from "@material-ui/cor/Grid";
+import Typography from '@mui/material/Typography';
+import CheckoutCard from "./CheckoutCard";
+import products from "../components/Functions/info-product"
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        padding: "2rem",
+    },
+}));
+=======
+// import React from 'react';
+// // import { makeStyles} from "@material-ui/core/styles";
+>>>>>>> f2c7ee016732521b2adbf436b429ada5baf3b733
 // import { makeStyles } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 // import { Typography } from '@mui/material/Typography';
@@ -15,6 +35,7 @@ import Total from './Total';
 //         padding: "2rem",
 //     },
 // }));
+>>>>>>> 1e58c5d9caa8e7f6c4d72f661477be7de7a457bb
 
 const CheckoutPage = () => {
     // const classes = useStyles();

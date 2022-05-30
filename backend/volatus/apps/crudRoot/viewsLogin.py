@@ -76,16 +76,14 @@ class Logout(APIView):
     def post(self, request, *args, **kwargs):
         try:
             token = request.POST.get('token')
-            print(token)
             token = Token.objects.filter(key = token).first()
             if token:
                 user = token.user
-
-                all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
+                all_sessions = Session.objects.filter(expire_date__gte = timezone.now())
                 if all_sessions.exists():
                     for session in all_sessions:
                         session_data = session.get_decoded()
-                        if user.id == int(session_data.get('_auth_user_id')):
+                        if int(user.DNI) == int(session_data.get('_auth_user_id')):
                             session.delete()
 
                 token.delete()
@@ -95,7 +93,7 @@ class Logout(APIView):
                 return Response({'token_message': token_message, 'session_message': session_message},
                                     status = status.HTTP_200_OK)
 
-            return Response({'error':'No se ha encontrado un usuario con estas credenciales.', 'token': token},
+            return Response({'error':'No se ha encontrado un usuario con estas credenciales.'},
                                 status = status.HTTP_400_BAD_REQUEST)
         except:
             return Response({'error': 'No se ha encontrado token en la petición.'},

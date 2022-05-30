@@ -1,0 +1,37 @@
+------------------------------PARA EL APP.JS :) --------------------------
+
+<Router>
+    <div className="container mt-3">
+        <div className="btn-group">
+            <NavLink to="/" className='btn btn-dark' >Inicio</NavLink>
+            <NavLink to="/productos" className="btn btn-dark" >Vuelos</NavLink>
+            <NavLink to="/contacto" className="btn btn-dark" >Contacto</NavLink>
+        </div>
+
+        <div className="btn-group">
+            <NavLink to="/gestionar-adm" className='btn btn-dark' > Gestionar Admin </NavLink>
+        </div>
+
+        <div className="btn-group">
+            <NavLink to="/iniciar-sesion" className="btn btn-dark" >Iniciar Sesión</NavLink>
+            <NavLink to="/registro" className="btn btn-dark" >Registrarse</NavLink>
+        </div>
+
+
+        <IconButton aria-label="show cart items" color='inherit'>
+            <Badge badgeContent={2} color='secondary'>
+                <ShoppingCart fontSize="large" color="primary"/>
+            </Badge>
+        </IconButton>
+        
+        <hr />
+        <Routes>
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/iniciar-sesion" element={<Login />} />
+            <Route path="/registro" element={<Register1 />} />
+            <Route path="/productos" element={<Products/>} />
+            <Route path="/gestionar-adm" element={<Manage_ADM />} />
+            <Route path="/"  element={<Inicio />} />
+        </Routes>
+    </div>
+</Router> 

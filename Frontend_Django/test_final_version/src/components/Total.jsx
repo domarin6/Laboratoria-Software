@@ -3,7 +3,7 @@ import React from "react";
 import styles from '../css/total.module.css'
 
 
-const Total = () => {
+export default function Total() {
     return(
         <div className={styles.root}>
             <h5>Total Items: 3</h5>
@@ -15,5 +15,3 @@ const Total = () => {
         </div>
     )
 }
-
-export default Total;

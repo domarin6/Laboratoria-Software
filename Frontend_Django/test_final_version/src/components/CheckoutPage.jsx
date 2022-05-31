@@ -26,7 +26,7 @@ const CheckoutPage = () => {
     return (
         <div className={styles.root}>
             <Grid container spacing={3}>
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{marginTop:"10px"}} >
                     <Typography align='center' gutterBottom variant='h4'>
                         Carrito de compra
                     </Typography>

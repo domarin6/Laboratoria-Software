@@ -5,8 +5,7 @@ const products = [{
         rating: 4,
         price: 870000,
         type: 'solo ida',
-        capacity: '',
-
+        // capacity: '',
         desciption: 'San Andrés es una isla colombiana del mar Caribe, frente a la costa de Nicaragua. Es conocida por los arrecifes de coral y la música reggae.',
         full_description: 'La encendida playa Spratt Bight tiene un paseo costero bordeado de palmeras. En el litoral está el Parque Johnny Cay, una pequeña isla con mangles de cocos y playas de arena blanca. El Parque Regional de Mangle Old Point es un santuario de vida silvestre con cangrejos, iguanas y aves.'
     },
@@ -46,7 +45,22 @@ const products = [{
         desciption: 'Ibagué es una ciudad del oeste de Colombia conocida por su patrimonio musical.',
         full_description: 'En la Plaza de Bolívar, bordeada de árboles, está la Catedral de Ibagué, que tiene un campanario con una cúpula. Cerca está el Conservatorio de Tolima, que presenta conciertos. El Museo de Arte de Tolima tiene una colección variada. En el noroeste, se encuentra el verde Cañón del Combeima, hogar de osos de anteojos, cóndores y zorros. Más al noroeste, están las cumbres nevadas del Parque Nacional Los Nevados.'
     },
-    {
+    {   
+        // ** Identificador --------> funcion que genere auto + ID          ************** ADMINISTRADOR ******
+        // origen
+        // destino
+        // costo_economico
+        // costo_primera_clase
+        // description -----> nacional, internacional
+        // capacidad_pasajeros  ----> Hacer desde FRONT dependiendo de description *************ADMINISTRADOR**************
+        // tipo ---->  solo ida, ida y vuelta
+        // full_description
+        // rating
+        // imagen
+        // fecha 
+        // hora
+
+
         id: 6,
         img: 'https://cdn.colombia.com/images/v2/turismo/sitios-turisticos/cartagena/ciudad-cartagena-800.jpg',
         destination: 'Cartagena',

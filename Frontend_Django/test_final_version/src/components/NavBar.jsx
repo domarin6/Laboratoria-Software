@@ -16,12 +16,21 @@ import { useStateValue } from '../components/contextAPI/StateProvider'
 export default function NavBar() {
   
   const [{basket}, dispatch] = useStateValue();
+  let saludo;
+  if (sessionStorage.getItem("name")){
+      saludo = <Typography color="textPrimary" component="p" sx={{flexGrow: 1 }}>
+      Hola {sessionStorage.getItem("name")}
+      </Typography>
+  }else{
+      saludo = <Typography  color="textPrimary" component="p" sx={{flexGrow: 1 }}>
+      Hola Invitado</Typography>
+
+  }
 
   return (
     <Box sx={{ flexGrow: 5 }} className={styles.root}>
       <AppBar position="static" className={styles.cuadro}>
         <Toolbar>
-
           <Link to="/">
             <IconButton
               size="large"
@@ -34,10 +43,13 @@ export default function NavBar() {
             </IconButton>
           </Link>
 
-          <Typography variant="h6" color="textPrimary" component="p" sx={{ flexGrow: 1 }}>
-            Hola Invitado
-          </Typography>
+          {saludo}  
+
           <div className={styles.grow}/>
+
+          <Link to="/crear-vuelos">
+            <Button color="inherit" variant='outlined'> <strong>Crear Vuelos</strong></Button>
+          </Link>
 
           <Link to="/vuelos">
             <Button color="inherit" variant='outlined'> <strong>Vuelos</strong></Button>
@@ -49,15 +61,16 @@ export default function NavBar() {
             </Link>
           </div>
 
-          
-          <Link to="/checkout-page">
-            <IconButton aria-label='mostrar items del carrito' color='inherit'>
-              <Badge badgeContent={basket.length} color='secondary'>
-                <ShoppingCart fontSize='large'/>  
-              </Badge>
-            </IconButton>
-          </Link>
-        
+          {
+            sessionStorage.getItem("username") && 
+              <Link to="/checkout-page">
+                <IconButton aria-label='mostrar items del carrito' color='inherit'>
+                  <Badge badgeContent={basket.length} color='secondary'>
+                    <ShoppingCart fontSize='large'/>  
+                  </Badge>
+                </IconButton>
+              </Link>
+          }
         </Toolbar>
       </AppBar>
     </Box>

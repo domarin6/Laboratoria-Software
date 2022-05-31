@@ -10,11 +10,16 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import ConnectingAirportsIcon from '@mui/icons-material/ConnectingAirports';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link as RouteLink} from 'react-router-dom';
 import { startRegister } from './Functions/registerFunction';
+import { Calendar } from 'primereact/calendar';
+
+
+
 
 // function Copyright(props) {
 //   return (
@@ -41,18 +46,24 @@ export default function SignUp() {
   //   });
   // };
 
-  
-  const [DNI, setDNI] = useState("");
-  const [nombre, setnombre] = useState("");
-  const [apellido, setapellido] = useState("");
-  const [correo_electronico, setcorreo_electronico] = useState("");
-  const [username, setusername] = useState("");
-  const [password, setpassword] = useState("");
+  const [origen, setorigen] = useState("");
+  const [destino, setdestino] = useState("");
+  const [costo_economico, setcosto_economico] = useState("");
+  const [costo_primera_clase, setcosto_primera_clase] = useState("");
+  const [description, setdescription] = useState("");
+  const [tipo, settipo] = useState("");
+  const [full_description, setfull_description] = useState("");
+  const [rating, setrating] = useState("");
+  const [imagen, setimagen] = useState("");
+  const [fecha, setfecha] = useState("");
+  const [hora, sethora] = useState("");
 
   const signup = (e) =>{
     e.preventDefault();
-    startRegister(DNI, nombre, apellido, correo_electronico, username, password);
+    startRegister(origen, destino, costo_economico, costo_primera_clase, description, tipo, full_description, rating, imagen, fecha, hora);
   }
+
+  const [fechaSeleccionada, cambiarFechaSeleccionada] = useState(new Date());
   
   return (
     <ThemeProvider theme={theme}>
@@ -67,53 +78,68 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <ConnectingAirportsIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Registro
+            Crear Vuelo
           </Typography>
           {/* onSubmit={handleSubmit} */}
           <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
 
-              <Grid item xs={12}>
-                  <TextField
-                    value={DNI}
-                    onChange={e => setDNI(e.target.value)}
-                    required
-                    fullWidth
-                    id="DNI"
-                    label="Número de identificación"
-                    name="DNI"
-                    autoComplete="DNI"
-                  />
-                </Grid>
-
               <Grid item xs={12} sm={6}>
                 <TextField
-                  value={nombre}
-                  onChange={e => setnombre(e.target.value)}
-                  autoComplete="given-name"
-                  name="firstName"
+                  value={origen}
+                  onChange={e => setorigen(e.target.value)}
+                  name="origen"
                   required
                   fullWidth
-                  id="firstName"
-                  label="Nombres"
+                  id="origen"
+                  label="Origen"
                   autoFocus
                 />
               </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
-                  value={apellido}
-                  onChange={e => setapellido(e.target.value)}
+                  value={destino}
+                  onChange={e => setdestino(e.target.value)}
+                  name="destino"
                   required
                   fullWidth
-                  id="lastName"
-                  label="Apellidos"
-                  name="lastName"
-                  autoComplete="family-name"
+                  id="destino"
+                  label="Destino"
+                  autoFocus
                 />
               </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={costo_economico}
+                  onChange={e => setcosto_economico(e.target.value)}
+                  name="costo_economico"
+                  required
+                  fullWidth
+                  id="costo_economico"
+                  label="Precio Clase Económica"
+                  autoFocus
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={costo_primera_clase}
+                  onChange={e => setcosto_primera_clase(e.target.value)}
+                  name="costo_primera_clase"
+                  required
+                  fullWidth
+                  id="costo_primera_clase"
+                  label="Precio Primera Clase"
+                  autoFocus
+                />
+              </Grid>
+
+{/* 
               <Grid item xs={12}>
                 <TextField
                   value={correo_electronico}
@@ -123,7 +149,6 @@ export default function SignUp() {
                   id="email"
                   label="Correo Electrónico"
                   name="email"
-                  autoComplete="email"
                 />
               </Grid>
 
@@ -151,14 +176,18 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                 />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="Quiero recibir ofertas y mensajes informativos de nuestra plataforma via correo electrónico."
-                />
+              </Grid> */}
+              
+            <Grid item xs={12}>
+                  <label htmlFor="fecha" style={{marginRight:"10px", color:"gray"}}>Fecha</label>
+                  <Calendar 
+                  id="fecha" 
+                  value={fecha} 
+                  onChange={(e) => setfecha(e.value)} />
               </Grid>
             </Grid>
+
+
             <Button
               type="submit"
               fullWidth
@@ -166,16 +195,8 @@ export default function SignUp() {
               sx={{ mt: 3, mb: 2 }}
               onClick={signup}
             >
-              Registrarse
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <RouteLink to="/signin">
-                  Ya tiene cuenta? Iniciar sesión.
-                </RouteLink>
-                
-              </Grid>
-            </Grid>
+              Crear Vuelo
+            </Button>            
           </Box>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}

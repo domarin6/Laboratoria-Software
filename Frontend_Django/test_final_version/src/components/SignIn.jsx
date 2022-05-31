@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link as RouteLink} from 'react-router-dom';
 import imagen from '../components/assets/img/loginFount.jpg'
+import { startLogin } from './Functions/loginFunction';
 
 // function Copyright(props) {
 //   return (
@@ -31,14 +33,22 @@ import imagen from '../components/assets/img/loginFount.jpg'
 const theme = createTheme();
 
 export default function SignInSide() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+
+  const signin = (e) =>{
+    e.preventDefault();
+    startLogin(username, password);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,18 +84,22 @@ export default function SignInSide() {
             <Typography component="h1" variant="h5">
               Iniciar Sesión
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate sx={{ mt: 1 }}>
               <TextField
+                value={username}
+                onChange={e => setusername(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Correo Electrónico"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Usuario"
+                name="username"
+                autoComplete="username"
                 autoFocus
               />
               <TextField
+                value={password}
+                onChange={e => setpassword(e.target.value)}
                 margin="normal"
                 required
                 fullWidth
@@ -104,6 +118,7 @@ export default function SignInSide() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={signin}
               >
                 Iniciar
               </Button>

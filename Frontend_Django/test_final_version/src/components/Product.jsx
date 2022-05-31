@@ -50,6 +50,10 @@ export default function Product({product:{id, img, destination, rating, price, d
     })
   }
 
+  // const addShoppingCart = () => {
+
+  // }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader

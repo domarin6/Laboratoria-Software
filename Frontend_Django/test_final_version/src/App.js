@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 import {
     BrowserRouter as Router,
     Route,
@@ -10,6 +11,11 @@ import Products from "./components/Products";
 import CheckoutPage from "./components/CheckoutPage";
 import SignInSide from "./components/SignIn";
 import SignUp from "./components/SignUp";
+import CrearVuelos from "./components/CrearVuelos";
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
 
 // import Contacto from "./components/Contacto";
 // import Login from "./components/Login";
@@ -34,6 +40,7 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/signin" element={<SignInSide/>} />
+                    <Route path="/crear-vuelos" element={<CrearVuelos/>} />
                     <Route path="/signup" element={<SignUp/> } />
                     <Route path="/checkout-page" element={<CheckoutPage/>}/>
                     <Route path="/vuelos" element={<Products/>}/>

@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {Link as RouteLink} from 'react-router-dom';
 import { startRegister } from './Functions/registerFunction';
 import { Calendar } from 'primereact/calendar';
+import MenuItem from '@mui/material/MenuItem';
 
 
 
@@ -64,7 +65,55 @@ export default function SignUp() {
   }
 
   const [fechaSeleccionada, cambiarFechaSeleccionada] = useState(new Date());
+
+  // **************************BOTON SELECT *******************
+
+  const currencies = [
+    {
+      value: 'Nacional',
+      label: 'Nacional',
+    },
+    {
+      value: 'Internacional',
+      label: 'Internacional',
+    },
+  ];
   
+  const tipoVuelo = [
+    {
+      value:'ida',
+      label:'Ida',
+    },
+    {
+      value:'ida_vuelta',
+      label:'Ida y Vuelta',
+    },
+  ];
+
+  const ratingValues = [
+    {
+      value:'1',
+      label:'Uno',
+    },
+    {
+      value:'2',
+      label:'Dos',
+    },
+    {
+      value:'3',
+      label:'Tres',
+    },
+    {
+      value:'4',
+      label:'Cuatro',
+    },
+    {
+      value:'5',
+      label:'Cinco',
+    },
+  ];
+
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -139,54 +188,107 @@ export default function SignUp() {
                 />
               </Grid>
 
-{/* 
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
-                  value={correo_electronico}
-                  onChange={e => setcorreo_electronico(e.target.value)}
-                  required
+                  value={description}
+                  onChange={e => setdescription(e.target.value)}
+                  id="outlined-select-currency"
+                  select
                   fullWidth
-                  id="email"
-                  label="Correo Electrónico"
-                  name="email"
-                />
+                  label="Categoría"
+                  // value={currency}
+                  // onChange={handleChange}
+                  helperText="Seleccione categoría"
+                >
+                  {currencies.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={tipo}
+                  onChange={e => settipo(e.target.value)}
+                  id="outlined-select-currency"
+                  select
+                  fullWidth
+                  label="Tipo vuelo"
+                  helperText="Seleccione tipo de vuelo"
+                >
+                  {tipoVuelo.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
 
               <Grid item xs={12}>
                 <TextField
-                  value={username}
-                  onChange={e => setusername(e.target.value)}
+                  value={full_description}
+                  onChange={e => setfull_description(e.target.value)}
+                  name="full_description"
                   required
                   fullWidth
-                  id="user"
-                  label="Usuario"
-                  name="user"
+                  id="full_description"
+                  label="Descripción del vuelo"
+                  autoFocus
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={rating}
+                  onChange={e => setrating(e.target.value)}
+                  id="outlined-select-currency"
+                  select
+                  fullWidth
+                  label="Puntaje de vuelo"
+                  helperText="Seleccione rating"
+                >
+                  {ratingValues.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  value={imagen}
+                  onChange={e => setimagen(e.target.value)}
+                  name="imagen"
+                  required
+                  fullWidth
+                  id="imagen"
+                  label="Link con Imagen"
+                  autoFocus
                 />
               </Grid>
 
               <Grid item xs={12}>
-                <TextField
-                  value={password}
-                  onChange={e => setpassword(e.target.value)}
-                  required
-                  fullWidth
-                  name="password"
-                  label="Contraseña"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid> */}
-              
-            <Grid item xs={12}>
-                  <label htmlFor="fecha" style={{marginRight:"10px", color:"gray"}}>Fecha</label>
-                  <Calendar 
-                  id="fecha" 
-                  value={fecha} 
-                  onChange={(e) => setfecha(e.value)} />
+                    <label htmlFor="fecha" style={{marginRight:"10px", color:"gray"}}>Fecha</label>
+                    <Calendar 
+                    id="fecha" 
+                    value={fecha} 
+                    onChange={(e) => setfecha(e.value)} />
+              </Grid>
+
+              <Grid item xs={12}>
+                    <label htmlFor="hora" style={{marginRight:"10px", color:"gray"}}>Hora</label>
+                    <Calendar 
+                    id="hora" 
+                    value={hora} 
+                    timeOnly
+                    showTime
+                    hourFormat='24'
+                    onChange={(e) => sethora(e.value)} />
               </Grid>
             </Grid>
-
 
             <Button
               type="submit"

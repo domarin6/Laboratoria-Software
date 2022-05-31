@@ -8,9 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import logo from '../components/assets/img/volatus_logo_removebg.png';
 import styles from '../css/nav.module.css';
+// import styles from '../css/barraNavegacion.module.css';
 import { ShoppingCart } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../components/contextAPI/StateProvider'
+
 
 
 export default function NavBar() {
@@ -24,40 +26,61 @@ export default function NavBar() {
   }else{
       saludo = <Typography  color="textPrimary" component="p" sx={{flexGrow: 1 }}>
       Hola Invitado</Typography>
-
   }
 
+  const testStyle={
+    width: '14px',
+    height: '10px',
+  };
+
   return (
-    <Box sx={{ flexGrow: 5 }} className={styles.root}>
-      <AppBar position="static" className={styles.cuadro}>
-        <Toolbar>
+    <Box sx={{ flexGrow: 5 ,}} >
+      <AppBar position="static" >
+        <Toolbar style={{backgroundColor:'#0C55B9',}}>
           <Link to="/">
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 2 , padding:'0',}}
             >
-              <img src={logo} className={styles.image} alt="logo_volatus" />
+              <div>
+                <img src={logo} style={{height: '50px', width: '70px',}} alt="logo_volatus" />
+              </div>
             </IconButton>
           </Link>
 
-          {saludo}  
-
-          <div className={styles.grow}/>
+          {saludo}
 
           <Link to="/crear-vuelos">
-            <Button color="inherit" variant='outlined'> <strong>Crear Vuelos</strong></Button>
+            <Button 
+            color="inherit" 
+            variant='outlined'
+            sx={{
+              color:"white"
+            }}
+            >
+               <strong>Crear Vuelos</strong>
+            </Button>
           </Link>
 
           <Link to="/vuelos">
-            <Button color="inherit" variant='outlined'> <strong>Vuelos</strong></Button>
+            <Button 
+            color="inherit" 
+            variant='outlined'
+            sx={{
+              color:"white",
+
+            }}
+            > 
+            <strong>Vuelos</strong>
+          </Button>
           </Link>
 
           <div className={styles.button}>
             <Link to="/signin">
-              <Button variant='outlined' color='inherit'>Iniciar Sesión</Button>
+              <Button variant='outlined' color='inherit' sx={{color:"white"}}>Iniciar Sesión</Button>
             </Link>
           </div>
 

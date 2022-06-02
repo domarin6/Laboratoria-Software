@@ -1,15 +1,16 @@
 
 import { notification, timerNotification } from "./alert";
 import { fetchWithoutToken, fetchWithToken } from "./fetch";
+import {Link} from 'react-router-dom';
 
 
-export const startRegister = async (id, name, lastName, birthDate, genre, tel, userName, password) => {
+export const startRegister = async ( DNI, nombre, apellido, correo_electronico, username, password) => {
   
-  const create = "";
+  const imagen_de_usuario = "";
 
   const response = await fetchWithoutToken(
-                          'crudRoot/cliente',
-                          { id, name, lastName, birthDate, genre, tel, userName, password, create },
+                          'crudRoot/administradores-list/',
+                          {DNI, nombre, apellido, correo_electronico, username, password, imagen_de_usuario},
                           'POST'
                       );
   const body = await response.json();
@@ -18,8 +19,7 @@ export const startRegister = async (id, name, lastName, birthDate, genre, tel, u
   if ( response.status === 200 ||  response.status === 201 ){
 
       timerNotification( 'Creación Exitosa!' );
-      window.location.href="./inicio";
-
+      window.location.href="/signin";
   }else{
       notification( 'ERROR',body.error,'error' );
   }

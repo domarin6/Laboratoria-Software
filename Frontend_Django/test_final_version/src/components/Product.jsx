@@ -10,7 +10,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ClassNames } from '@emotion/react';
-import { AddShoppingCart } from '@mui/icons-material'
+import { AddShoppingCart, ImageAspectRatio } from '@mui/icons-material';
+import { actionTypes } from './contextAPI/reducer';
+import { useStateValue } from '../components/contextAPI/StateProvider';
+import accounting from 'accounting';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,34 +33,51 @@ export default function Product({product:{id, img, destination, rating, price, d
     setExpanded(!expanded);
   };
 
+  const [{basket}, dispatch] = useStateValue();
+
+  const addToBasket = () => {
+    dispatch({
+      type: actionTypes.ADD_TO_BASKET,
+      item:{
+        id,
+        img,
+        destination,
+        rating,
+        price,
+        description,
+        full_description,
+      }
+    })
+  }
+
+  // const addShoppingCart = () => {
+
+  // }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
-        // avatar={
-        //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-        //     R
-        //   </Avatar>
-        // }
         action={
-            <Typography className={ClassNames.action} variant='h5' color='textSecondary'>{price}</Typography>
+            <Typography className={ClassNames.action} variant='h5' color='textSecondary'>{accounting.formatMoney(price,"$", 0)}</Typography>
         }
         title={destination}
-        subheader="TEXTO DE EJEMPLO"
+        subheader="DESTINO"
       />
       <CardMedia
         component="img"
         height="194"
-        // image={imagenes.src_pub1}
         image = {img}
         alt="Destino"
       />
+
       <CardContent>
         <Typography variant="body2" color="text.secondary">
             {description}
         </Typography>
       </CardContent>
+
       <CardActions disableSpacing>
-        <IconButton aria-label="add to shopping card">
+        <IconButton aria-label="add to shopping card" onClick={addToBasket}>
           <AddShoppingCart />
         </IconButton>
         <IconButton>
@@ -78,6 +98,8 @@ export default function Product({product:{id, img, destination, rating, price, d
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
+
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph >

@@ -1,0 +1,22 @@
+:root{
+    flex-grow: 1;
+    margin-bottom: "7rem";
+}
+.cuadro{
+    background-color: white;
+    box-shadow: "none";
+}
+.grow{
+    flex-grow: 1;
+}
+
+.button{
+    margin-left:10px;
+    
+}
+
+.image{
+    margin-right: "10px";
+    height: "1rem";
+}
+

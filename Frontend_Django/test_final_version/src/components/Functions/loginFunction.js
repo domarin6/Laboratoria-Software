@@ -13,15 +13,15 @@ export const startLogin = async(username, password) => {
     if (response.status === 200 || response.status === 201) {
 
         // set user info
-        localStorage.setItem('token', body.token);
-        localStorage.setItem('username', body.user.username);
-        localStorage.setItem('DNI', body.user.DNI);
-        localStorage.setItem('name', body.user.nombre);
+        // localStorage.setItem('token', body.token);
+        sessionStorage.setItem('username', body.user.username);
+        sessionStorage.setItem('DNI', body.user.DNI);
+        sessionStorage.setItem('name', body.user.nombre);
 
         // sessionStorage.setItem
 
         timerNotification('Inicio de Sesion Exitoso!');
-        window.location.href = "./gestionar-adm";
+        window.location.href = "./vuelos";
 
     } else {
         notification('ERROR', body.error, 'error');

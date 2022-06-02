@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../css/crudRoot.module.css'
+// import styles from '../css/crudRoot.module.css'
 import imagenes from './assets/imagenes';
 
 function Manage_ADM(){

@@ -1,0 +1,11 @@
+.root{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: "20vh";
+}
+
+.button{
+    margin-top: "2rem";
+}

@@ -32,8 +32,9 @@ class FlightSerializer(serializers.ModelSerializer):
             'hora': instance.hora,
             'tiempo_vuelo': instance.tiempo_vuelo,
             'hora_llegada': instance.hora_llegada,
-            'costo': instance.costo,
-            'image': instance.image.url if instance.image != '' else ''
+            'costo_economico': instance.costo_economico,
+            'costo_primera_clase': instance.costo_primera_clase,
+            'image': instance.image
             
         }
 

@@ -37,7 +37,7 @@ class UsuarioManager(BaseUserManager):
         return self._create_user(username, DNI, nombre, apellido, password, fecha_de_nacimiento = None, lugar_de_nacimiento = None, direccion_de_facturacion = None, genero = None, correo_electronico = None, imagen_de_usuario = None, is_active = True, is_staff = True, is_superuser = True, **extra_fields)
 
 class Usuario(AbstractBaseUser, PermissionsMixin):
-    DNI = models.IntegerField('Identificación',primary_key=True, unique = True)
+    DNI = models.CharField('Identificación',primary_key=True, unique = True, max_length=11)
     nombre = models.CharField('Nombres',max_length=100, blank = False, null = False)
     apellido = models.CharField('Apellidos',max_length=100, blank = False, null = False)
     username = models.CharField('Nombre de usuario', unique = True, max_length=20)

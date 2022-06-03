@@ -9,8 +9,6 @@ class CategoryFlight(BaseModel):
     description = models.CharField('Descripcion', max_length=50,unique = True,null = False,blank = False)
     capacidad_pasajeros = models.IntegerField('Capacidad de pasajeros')
     tipo = models.CharField('Solo ida o ida-vuelta', max_length=20, blank = True, null = False)
-    clase_economica = models.JSONField('Clase económica', default={})
-    primera_clase = models.JSONField('Primera clase', default={})
 
     class Meta:
         """Meta definition for CategoryFlight."""
@@ -24,24 +22,26 @@ class CategoryFlight(BaseModel):
 
 
 
+
+
 class Flight(BaseModel):
     """Model definition for Flight."""
 
     # TODO: Define fields here
     fecha = models.DateField()
-    hora = models.TimeField()
+    hora = models.DateTimeField()
     origen = models.CharField('origen',max_length=20)
     destino = models.CharField('destino',max_length=20)
-    tiempo_vuelo = models.CharField('tiempo_vuelo',max_length=20, null=True)
-    hora_llegada = models.DateTimeField(null=True)
-    costo_economico = models.BigIntegerField()
-    costo_primera_clase = models.BigIntegerField()
-    rating = models.IntegerField(default=0)
-    full_description = models.TextField()
+    tiempo_vuelo = models.CharField('tiempo_vuelo',max_length=20)
+    hora_llegada = models.DateTimeField()
+    costo = models.BigIntegerField()
     categoria=models.ForeignKey(CategoryFlight,on_delete=models.CASCADE, verbose_name='Categoria de vuelo', null=False)
     disponibilidad = models.BooleanField(default = True)
-    image = models.URLField('Imagen del Vuelo', blank=True, null=True)
+    image = models.ImageField('Imagen del Vuelo', upload_to='flights/', blank=True, null=True)
 
+    
+
+        
     class Meta:
         """Meta definition for Flight."""
 

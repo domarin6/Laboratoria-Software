@@ -11,8 +11,6 @@ class OrderItem(BaseModel):
     vuelo =  models.ForeignKey(Flight, related_name='Flights_cart', on_delete=models.CASCADE, verbose_name='Vuelo en el carrito de compra')
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     cantidad = models.PositiveBigIntegerField(default=0)
-    clase = models.CharField("Clase", max_length=20, blank = False, null = False)
-    silla = models.IntegerField("Silla")
     cliente = models.PositiveBigIntegerField()
 
 

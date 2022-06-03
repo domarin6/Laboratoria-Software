@@ -12,16 +12,13 @@ class CartFlightSerializer(serializers.ModelSerializer):
         return {
             'precio':instance.precio,
             'cantidad':instance.cantidad,
-            'clase':instance.clase,
-            'silla':instance.silla,
             'cliente':instance.cliente,
             'destino': instance.vuelo.destino,
             'fecha': instance.vuelo.fecha,
             'hora': instance.vuelo.hora,
             'tiempo_vuelo': instance.vuelo.tiempo_vuelo,
             'hora_llegada': instance.vuelo.hora_llegada,
-            'costo_economico': instance.vuelo.costo_economico,
-            'costo_primera_clase': instance.vuelo.costo_primera_clase,
+            'costo': instance.vuelo.costo,
             'image': instance.vuelo.image.url if instance.vuelo.image != '' else ''   
         }
 

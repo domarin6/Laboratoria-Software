@@ -19,9 +19,6 @@ import { startRegister } from './Functions/registerFunction';
 import { Calendar } from 'primereact/calendar';
 import MenuItem from '@mui/material/MenuItem';
 
-
-
-
 // function Copyright(props) {
 //   return (
 //     <Typography variant="body2" color="text.secondary" align="center" {...props}>
